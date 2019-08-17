@@ -16,14 +16,24 @@ public class PersonServiceImpl implements PersonService {
     static private AtomicInteger idCounter = new AtomicInteger();
 
 
-
     @Override
     public Person getPersonById(int pesonId) {
-        Person p = new Person();
-        p.setId(idCounter.incrementAndGet());
-        p.setName("Andrius");
-        personDB.put(p.getId(), p);
+        createPerson();
         Person person = personDB.get(pesonId);
         return person;
+    }
+
+
+    public void createPerson() {
+
+        Person p = new Person();
+        p.setPId(idCounter.incrementAndGet());
+        p.setPName("Andrius");
+        p.setPSurename("surename");
+        p.setPSeatNo(2);
+        p.setPDepartment("Department");
+        p.setPFloor("third floor");
+        p.setPLiveSupportNo("live 1");
+        personDB.put(p.getPId(), p);
     }
 }

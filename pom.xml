@@ -19,10 +19,16 @@
         <spring.boot.starter.test.version>2.1.7.RELEASE</spring.boot.starter.test.version>
         <lombok.version>1.18.8</lombok.version>
         <springfox.swagger2.version>2.9.2</springfox.swagger2.version>
+        <apache.commons.lang3.version>3.9</apache.commons.lang3.version>
     </properties>
 
     <dependencies>
 
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${apache.commons.lang3.version}</version>
+        </dependency>
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
