@@ -1,5 +1,10 @@
 
-qsquid:ModifiersOrderCheck"EReorder the modifiers to comply with the Java Language Specification.(—Ö‹…8ËŒÙØÉ-
-squid:S1488"^Immediately return this expression instead of assigning it to the temporary variable "person".(¬¹Ğšøÿÿÿÿ8èøìÛÉ-
-|squid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(ğÄ¼—üÿÿÿÿ8ËŒÙØÉ-
-qsquid:ModifiersOrderCheck"EReorder the modifiers to comply with the Java Language Specification.(Ğù­³8ËŒÙØÉ-
+Ksquid:S1604="(Make this anonymous inner class a lambda(”Î‘ùÿÿÿÿ8ÛíÈ×Ê-
+^squid:CallToDeprecatedMethod9"/Remove this use of "forEach"; it is deprecated.(õŞÍ8ä®Ê×Ê-
+qsquid:ModifiersOrderCheck"EReorder the modifiers to comply with the Java Language Specification.(Ğù­³8³ÌéÄÊ-
+isquid:CommentedOutCodeLine5"<This block of commented-out lines of code should be removed.(Å¸Áğ8óª¿×Ê-
+V
+squid:S106@"9Replace this use of System.out or System.err by a logger.(œ•é‹8ÛíÈ×Ê-
+qsquid:ModifiersOrderCheck"EReorder the modifiers to comply with the Java Language Specification.(—Ö‹…8šÕ­×Ê-
+|squid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(ğÄ¼—üÿÿÿÿ8³ÌéÄÊ-
+isquid:CommentedOutCodeLineE"<This block of commented-out lines of code should be removed.(ÉÚú—8ÿŞ¼×Ê-

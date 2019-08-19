@@ -29,7 +29,7 @@ public class PersonRestServiceImpl implements PersonRestService {
         final StopWatch timer = StopWatch.createStarted();
         try {
             final Person person = personService.getPersonById(personId);
-            /* RsCheck.badRequest(StringUtils.isNoneBlank("personId"),WRONG_ID_LABEL);*/
+            RsCheck.badRequest(StringUtils.isNoneBlank(Integer.toString(personId)), WRONG_ID_LABEL);
             return Response.ok(person).build();
         } catch (final ValidationException | BadRequestException e) {
             throw e;

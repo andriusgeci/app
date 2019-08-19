@@ -20,10 +20,23 @@
         <lombok.version>1.18.8</lombok.version>
         <springfox.swagger2.version>2.9.2</springfox.swagger2.version>
         <apache.commons.lang3.version>3.9</apache.commons.lang3.version>
+        <openpojo.version>0.8.12</openpojo.version>
+        <mongodb.version>3.11.0</mongodb.version>
     </properties>
 
     <dependencies>
 
+        <dependency>
+            <groupId>org.mongodb</groupId>
+            <artifactId>mongo-java-driver</artifactId>
+            <version>${mongodb.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.openpojo</groupId>
+            <artifactId>openpojo</artifactId>
+            <version>${openpojo.version}</version>
+            <scope>test</scope>
+        </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>

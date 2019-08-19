@@ -13,6 +13,10 @@ public class RsCheck {
         check(condition, BadRequestException::new, msg);
     }
 
+    public static void badRequest(final Boolean condition, final CharSequence msg, final Object... msgArgs) {
+        badRequest(condition, () -> String.format(msg.toString(), msgArgs));
+    }
+
     public static <E extends RuntimeException> void check(final Boolean condition, final Function<String, E> ex, final Supplier<CharSequence> msg) {
         if (ex == null) {
             throw new NullPointerException("ex is null");
@@ -24,5 +28,4 @@ public class RsCheck {
             throw ex.apply(msg.get().toString());
         }
     }
-
 }
