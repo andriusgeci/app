@@ -1,23 +1,20 @@
 package com.emploc.service;
 
 import com.emploc.model.Person;
-import com.mongodb.Block;
-import com.mongodb.DB;
-import com.mongodb.client.MongoClient;
-import com.mongodb.MongoClientSettings;
-import com.mongodb.client.MongoClients;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
-import org.bson.codecs.configuration.CodecRegistry;
-import org.bson.codecs.pojo.PojoCodecProvider;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
-import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+import org.bson.Document;
 
 
 @Service
@@ -28,43 +25,31 @@ public class PersonServiceImpl implements PersonService {
             ConcurrentHashMap<Integer, Person>();
     static private AtomicInteger idCounter = new AtomicInteger();
 
-    CodecRegistry pojoCodecRegistry = fromRegistries(MongoClientSettings.getDefaultCodecRegistry(),
-            fromProviders(PojoCodecProvider.builder().automatic(true).build()));
+    MongoClient mongoClient = MongoClients.create();
+    MongoDatabase database = mongoClient.getDatabase("mongoDB");
 
-    MongoClientSettings settings = MongoClientSettings.builder()
-            .codecRegistry(pojoCodecRegistry)
-            .build();
-    MongoClient mongoClient = MongoClients.create(settings);
+    MongoCollection<Document> collection = database.getCollection("persons");
 
-    MongoDatabase database = mongoClient.getDatabase("testdb");
 
-    MongoCollection<Person> collection = database.getCollection("person",Person.class);
-
-    public void create(){
-
-        Person ada = new Person(1,2,"test","test","test","test","test");
-
-        collection.insertOne(ada);
-
-    }
 
     @Override
     public Person getPersonById(int pesonId) {
-//        createPerson();
+     createPerson();
 //        Person person = personDB.get(pesonId);
+        Document query = new Document("pName", "Andrius");
+        List results = new ArrayList<>();
+        System.out.println("QUERY");
+        collection.find(query).into(results);
+        System.out.println("Andrius"+results);
 
-        create();
-        collection.find().forEach(printBlock);
-        return person;
+
+
+
+        return (Person) results.get(0);
     }
 
-    Block<Person> printBlock = new Block<Person>() {
-        @Override
-        public void apply(final Person person) {
-            System.out.println(person);
-        }
-    };
     public void createPerson() {
+
 
         /*MongoClient mongoClient = new MongoClient("localhost", 27017);
         DB database = mongoClient.getDatabase("test");
@@ -77,6 +62,10 @@ public class PersonServiceImpl implements PersonService {
         p.setPDepartment("Department");
         p.setPFloor("third floor");
         p.setPLiveSupportNo("live 1");
-        personDB.put(p.getPId(), p);
+        System.out.println(p);
+        Document person = new Document().append("Andrius", p);
+        System.out.println("INSERTING");
+        collection.insertOne(person);
+        /*personDB.put(p.getPId(), p);*/
     }
 }

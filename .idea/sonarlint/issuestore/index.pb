@@ -25,3 +25,5 @@ _
 0src/main/java/com/emploc/utils/AppConstants.java,3\0\309a97e4d83977d284a13d59c2cda4baad59a307
 ^
 .src/test/java/com/emp/loc/model/ModelTest.java,a\2\a291d06226180084866c4494ade80a1ad47d80ff
+R
+"src/main/resources/application.yml,a\6\a6d8b8556fee0e03112ce2bf34b8cb27a7dc9e58
