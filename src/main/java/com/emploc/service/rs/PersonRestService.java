@@ -12,13 +12,13 @@ import javax.ws.rs.core.Response;
 import static com.emploc.utils.AppConstants.*;
 
 @Api
-@Path("/v1/persons")
+@Path("/service/v1")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public interface PersonRestService {
 
     @GET
-    @Path("/{id}")
+    @Path("/person/{id}")
     @ApiOperation(value = "get Person object by id")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = OK_MSG, response = Person.class),
@@ -27,5 +27,16 @@ public interface PersonRestService {
     })
     Response getPerson(
             @ApiParam(value = "Person id", required = true) @NotNull @PathParam("id") int id
+    );
+
+    @POST
+    @Path("/person")
+    @ApiOperation(value = "Create person object", tags = {"Person"})
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = OK_MSG, response = Person.class),
+            @ApiResponse(code = 400, message = ERR_MSG, response = CodeMessage.class, responseContainer = "List")
+    })
+    Response createPerson(
+            @ApiParam(value = "Person", required = true) @NotNull Person person
     );
 }

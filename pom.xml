@@ -22,9 +22,16 @@
         <apache.commons.lang3.version>3.9</apache.commons.lang3.version>
         <openpojo.version>0.8.12</openpojo.version>
         <mongodb.version>3.11.0</mongodb.version>
+        <mongodb.morphia.version>1.3.2</mongodb.morphia.version>
     </properties>
 
     <dependencies>
+
+        <dependency>
+            <groupId>org.mongodb.morphia</groupId>
+            <artifactId>morphia</artifactId>
+            <version>${mongodb.morphia.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>org.mongodb</groupId>
