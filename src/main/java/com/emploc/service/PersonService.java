@@ -5,6 +5,6 @@ import com.emploc.model.Person;
 public interface PersonService {
 
  Person getPersonById(int personId);
- Person createPerson(Person person);
+ Person savePerson(Person person);
 
 }

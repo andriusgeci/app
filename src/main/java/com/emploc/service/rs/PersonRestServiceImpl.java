@@ -46,7 +46,7 @@ public class PersonRestServiceImpl implements PersonRestService {
         try {
            // RsCheck.badRequest(bco.getPayload() != null, "payload may not be null");
             System.out.println("PersonRestServiceIMPL"+person);
-            return Response.ok(personService.createPerson(person)).build();
+            return Response.ok(personService.savePerson(person)).build();
         } catch (final ValidationException | BadRequestException e) {
             throw e;
         } catch (final Exception e) {
