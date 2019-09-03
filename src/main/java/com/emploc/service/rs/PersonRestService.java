@@ -39,4 +39,16 @@ public interface PersonRestService {
     Response createPerson(
             @ApiParam(value = "Person", required = true) @NotNull Person person
     );
+
+/*    @GET
+    @Path("/person/{name}")
+    @ApiOperation(value = "get Person objects by name")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = OK_MSG, response = Person.class),
+            @ApiResponse(code = 400, message = ERR_MSG, response = CodeMessage.class, responseContainer = "List"),
+            @ApiResponse(code = 404, message = NOT_FOUND_MSG, response = CodeMessage.class, responseContainer = "List")
+    })
+    Response getPersonByName(
+            @ApiParam(value = "Person name", required = true) @NotNull @PathParam("name") String name
+    );*/
 }

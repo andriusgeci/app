@@ -21,22 +21,26 @@
         <springfox.swagger2.version>2.9.2</springfox.swagger2.version>
         <apache.commons.lang3.version>3.9</apache.commons.lang3.version>
         <openpojo.version>0.8.12</openpojo.version>
-        <mongodb.version>3.11.0</mongodb.version>
-        <mongodb.morphia.version>1.3.2</mongodb.morphia.version>
+        <spring.boot.starter.data.mongodb.version>2.1.7.RELEASE</spring.boot.starter.data.mongodb.version>
+        <querydsl.mongodb.version>4.1.3</querydsl.mongodb.version>
+        <querydsl.apt.version>4.2.1</querydsl.apt.version>
     </properties>
 
     <dependencies>
-
         <dependency>
-            <groupId>org.mongodb.morphia</groupId>
-            <artifactId>morphia</artifactId>
-            <version>${mongodb.morphia.version}</version>
+            <groupId>com.querydsl</groupId>
+            <artifactId>querydsl-mongodb</artifactId>
+            <version>${querydsl.mongodb.version}</version>
         </dependency>
-
         <dependency>
-            <groupId>org.mongodb</groupId>
-            <artifactId>mongo-java-driver</artifactId>
-            <version>${mongodb.version}</version>
+            <groupId>com.querydsl</groupId>
+            <artifactId>querydsl-apt</artifactId>
+            <version>${querydsl.apt.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-mongodb</artifactId>
+            <version>${spring.boot.starter.data.mongodb.version}</version>
         </dependency>
         <dependency>
             <groupId>com.openpojo</groupId>
@@ -79,6 +83,14 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>11</source>
+                    <target>11</target>
+                </configuration>
             </plugin>
         </plugins>
     </build>

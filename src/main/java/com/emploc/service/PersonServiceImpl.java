@@ -1,50 +1,52 @@
 package com.emploc.service;
 
+import com.emploc.validation.PersonNotFoundException;
 import com.emploc.model.Person;
-import com.mongodb.MongoClientSettings;
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoClients;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
-import org.bson.Document;
-import org.bson.codecs.configuration.CodecRegistry;
-import org.bson.codecs.pojo.PojoCodecProvider;
+import com.emploc.repository.PersonRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
-import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
-
 
 @Service
 public class PersonServiceImpl implements PersonService {
 
-    MongoClient mongoClient = MongoClients.create();
+    PersonRepository personRepository;
 
-    CodecRegistry pojoCodecRegistry = fromRegistries(MongoClientSettings.getDefaultCodecRegistry(),
-            fromProviders(PojoCodecProvider.builder().automatic(true).build()));
-
-    MongoDatabase mongoDatabase = mongoClient.getDatabase("mongoDB").withCodecRegistry(pojoCodecRegistry);
-    MongoCollection<Person> collection = mongoDatabase.getCollection("persons", Person.class);
+    @Autowired
+    public PersonServiceImpl(PersonRepository personRepository) {
+        this.personRepository = personRepository;
+    }
 
     @Override
-    public Person getPersonById(int personId) {
+    public Person getPersonById(int personId) throws Exception {
 
-        Document query = new Document("pId", personId);
-        List<Person> results = new ArrayList<>();
-        System.out.println("WORKING");
-        collection.find(query).into(results);
-        System.out.println("Andrius" + results.get(0));
-        //Person person = results.get();
-        return results.get(0);
+        /*try {
+            Optional<Person> opt = personRepository.findById(personId);
+            if (opt.isEmpty()) {
+
+                throw new Exception();//throw document not found
+            }
+            final Person person = opt.get();*/
+            return personRepository.findById(personId).get();
+                   /* .orElseThrow(() -> new PersonNotFoundException("Person with id" + personId + "Not Found"));*/
+      /*  } finally {
+            System.out.println("test");
+        }*/
+
+
     }
 
     @Override
     public Person savePerson(Person person) {
-        System.out.println("INSERTING PERSON" + person);
-        collection.insertOne(person);
+        personRepository.save(person);
         return person;
     }
+
+    @Override
+    public List<Person> listPersonByName(String name) {
+        personRepository.findPersonByName(name);
+        return null;
+    }
+
 }

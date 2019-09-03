@@ -10,6 +10,8 @@ import java.util.StringJoiner;
 
 public class CodeMessage implements Serializable {
 
+    private static final long serialVersionUID = -696899611129612908L;
+
     @JsonProperty("code")
     private Integer code = null;
 
