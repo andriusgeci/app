@@ -1,11 +1,8 @@
 
-ysquid:UselessImportCheck"IRemove this unused import 'com.emploc.exception.PersonNotFoundException'.(÷Àã¡úÿÿÿÿ8”Ì»ŠÎ-
 V
-squid:S1061"9Replace this use of System.out or System.err by a logger.(‡þ¯È8ŠÿÛòÍ-
-nsquid:CommentedOutCodeLine?"<This block of commented-out lines of code should be removed.(”Šó‘ûÿÿÿÿ8ŠÿÛòÍ-
-nsquid:CommentedOutCodeLine:"<This block of commented-out lines of code should be removed.(ÝîëŒùÿÿÿÿ8ŠÿÛòÍ-
-nsquid:CommentedOutCodeLine0"<This block of commented-out lines of code should be removed.(ù±–ñúÿÿÿÿ8ŠÿÛòÍ-
-nsquid:CommentedOutCodeLineS"<This block of commented-out lines of code should be removed.(•Èêüÿÿÿÿÿ8ŠÿÛòÍ-
-[
-squid:S106)"9Replace this use of System.out or System.err by a logger.(Ëå·ÿûÿÿÿÿ8ŠÿÛòÍ-
-nsquid:CommentedOutCodeLine6"<This block of commented-out lines of code should be removed.(ØŸþÿÿÿÿÿ8ŠÿÛòÍ-
+squid:S106+"9Replace this use of System.out or System.err by a logger.(‡þ¯È8ŠÿÛòÍ-
+nsquid:CommentedOutCodeLine*"<This block of commented-out lines of code should be removed.(ù±–ñúÿÿÿÿ8ŠÿÛòÍ-
+nsquid:CommentedOutCodeLine0"<This block of commented-out lines of code should be removed.(ØŸþÿÿÿÿÿ8ŠÿÛòÍ-
+Gsquid:S1481"*Remove this unused "timer" local variable.(’¼Åb8Ùöñ»Ð-
+Vsquid:S1854"9Remove this useless assignment to local variable "timer".(’¼Åb8Ùöñ»Ð-
+nsquid:CommentedOutCodeLine4"<This block of commented-out lines of code should be removed.(ÝîëŒùÿÿÿÿ8ŠÿÛòÍ-

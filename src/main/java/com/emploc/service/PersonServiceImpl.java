@@ -1,40 +1,39 @@
 package com.emploc.service;
 
-import com.emploc.validation.PersonNotFoundException;
 import com.emploc.model.Person;
 import com.emploc.repository.PersonRepository;
+import com.emploc.validation.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PersonServiceImpl implements PersonService {
 
-    PersonRepository personRepository;
 
     @Autowired
+    PersonRepository personRepository;
+
     public PersonServiceImpl(PersonRepository personRepository) {
         this.personRepository = personRepository;
     }
 
     @Override
-    public Person getPersonById(int personId) throws Exception {
+    public Person getPersonById(int personId) {
 
-        /*try {
+
+        //return personRepository.findById(personId).isPresent() ?  personRepository.findById(personId).get() : null;
+        try {
             Optional<Person> opt = personRepository.findById(personId);
             if (opt.isEmpty()) {
-
-                throw new Exception();//throw document not found
+                throw new EntityNotFoundException("Entity with requested id: " + personId + " not found");
             }
-            final Person person = opt.get();*/
-            return personRepository.findById(personId).get();
-                   /* .orElseThrow(() -> new PersonNotFoundException("Person with id" + personId + "Not Found"));*/
-      /*  } finally {
-            System.out.println("test");
-        }*/
-
-
+            return opt.get();
+        } finally {
+            System.out.println("finally");
+        }
     }
 
     @Override
