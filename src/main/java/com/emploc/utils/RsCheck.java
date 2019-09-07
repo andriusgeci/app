@@ -19,7 +19,6 @@ public class RsCheck {
     }
 
     public static void badRequest(final Boolean condition, final CharSequence msg, final Object... msgArgs) {
-        System.out.println("BAD REQUEST");
         badRequest(condition, () -> String.format(msg.toString(), msgArgs));
     }
 

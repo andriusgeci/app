@@ -2,8 +2,11 @@ package com.emploc.service.rs;
 
 import com.emploc.model.Person;
 import com.emploc.service.PersonService;
+import com.emploc.utils.RsCheck;
 import com.emploc.validation.EntityNotFoundException;
 import com.emploc.validation.ValidationException;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.StopWatch;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +16,7 @@ import javax.ws.rs.BadRequestException;
 import javax.ws.rs.core.Response;
 
 @Service
+@Slf4j
 public class PersonRestServiceImpl implements PersonRestService {
 
     private final PersonService personService;
@@ -27,20 +31,22 @@ public class PersonRestServiceImpl implements PersonRestService {
 
         final StopWatch timer = StopWatch.createStarted();
         try {
+           // RsCheck.notNullBadRequest();
             final Person person = personService.getPersonById(personId);
             return Response.ok(person).build();
         } catch (final ValidationException | EntityNotFoundException | BadRequestException e) {
             throw e;
         } catch (final Exception e) {
             throw new BadRequestException(e);
+        }finally {
+            log.info("time elapsed ms {}",String.valueOf(timer.getTime()));
         }
     }
 
     @Override
     public Response createPerson(@NotNull final Person person) {
         try {
-            // RsCheck.badRequest(bco.getPayload() != null, "payload may not be null");
-            System.out.println("PersonRestServiceIMPL" + person);
+           // RsCheck.badRequest(person.getPayload() != null, "payload may not be null");
             return Response.ok(personService.savePerson(person)).build();
         } catch (final ValidationException | BadRequestException e) {
             throw e;

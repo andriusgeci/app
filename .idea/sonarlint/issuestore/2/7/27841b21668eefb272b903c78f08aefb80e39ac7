@@ -1,8 +1,8 @@
 
-V
-squid:S106+"9Replace this use of System.out or System.err by a logger.(‡ş¯È8ŠÿÛòÍ-
-nsquid:CommentedOutCodeLine*"<This block of commented-out lines of code should be removed.(ù±–ñúÿÿÿÿ8ŠÿÛòÍ-
 nsquid:CommentedOutCodeLine0"<This block of commented-out lines of code should be removed.(ØŸşÿÿÿÿÿ8ŠÿÛòÍ-
 Gsquid:S1481"*Remove this unused "timer" local variable.(’¼Åb8Ùöñ»Ğ-
-Vsquid:S1854"9Remove this useless assignment to local variable "timer".(’¼Åb8Ùöñ»Ğ-
 nsquid:CommentedOutCodeLine4"<This block of commented-out lines of code should be removed.(İîëŒùÿÿÿÿ8ŠÿÛòÍ-
+nsquid:CommentedOutCodeLine*"<This block of commented-out lines of code should be removed.(ù±–ñúÿÿÿÿ8ŠÿÛòÍ-
+Vsquid:S1854"9Remove this useless assignment to local variable "timer".(’¼Åb8Ùöñ»Ğ-
+V
+squid:S106+"9Replace this use of System.out or System.err by a logger.(‡ş¯È8ŠÿÛòÍ-
