@@ -1,82 +1,51 @@
 package com.emploc.service;
 
 import com.emploc.model.Person;
-import com.mongodb.Block;
-import com.mongodb.DB;
-import com.mongodb.client.MongoClient;
-import com.mongodb.MongoClientSettings;
-import com.mongodb.client.MongoClients;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
-import org.bson.codecs.configuration.CodecRegistry;
-import org.bson.codecs.pojo.PojoCodecProvider;
+import com.emploc.repository.PersonRepository;
+import com.emploc.validation.EntityNotFoundException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.atomic.AtomicInteger;
-
-import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
-import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
-
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PersonServiceImpl implements PersonService {
 
 
-    static private Map<Integer, Person> personDB = new
-            ConcurrentHashMap<Integer, Person>();
-    static private AtomicInteger idCounter = new AtomicInteger();
+    @Autowired
+    PersonRepository personRepository;
 
-    CodecRegistry pojoCodecRegistry = fromRegistries(MongoClientSettings.getDefaultCodecRegistry(),
-            fromProviders(PojoCodecProvider.builder().automatic(true).build()));
-
-    MongoClientSettings settings = MongoClientSettings.builder()
-            .codecRegistry(pojoCodecRegistry)
-            .build();
-    MongoClient mongoClient = MongoClients.create(settings);
-
-    MongoDatabase database = mongoClient.getDatabase("testdb");
-
-    MongoCollection<Person> collection = database.getCollection("person",Person.class);
-
-    public void create(){
-
-        Person ada = new Person(1,2,"test","test","test","test","test");
-
-        collection.insertOne(ada);
-
+    public PersonServiceImpl(PersonRepository personRepository) {
+        this.personRepository = personRepository;
     }
 
     @Override
-    public Person getPersonById(int pesonId) {
-//        createPerson();
-//        Person person = personDB.get(pesonId);
+    public Person getPersonById(int personId) {
 
-        create();
-        collection.find().forEach(printBlock);
+
+        //return personRepository.findById(personId).isPresent() ?  personRepository.findById(personId).get() : null;
+        try {
+            Optional<Person> opt = personRepository.findById(personId);
+            if (opt.isEmpty()) {
+                throw new EntityNotFoundException("Entity with requested id: " + personId + " not found");
+            }
+            return opt.get();
+        } finally {
+            System.out.println("finally");
+        }
+    }
+
+    @Override
+    public Person savePerson(Person person) {
+        personRepository.save(person);
         return person;
     }
 
-    Block<Person> printBlock = new Block<Person>() {
-        @Override
-        public void apply(final Person person) {
-            System.out.println(person);
-        }
-    };
-    public void createPerson() {
-
-        /*MongoClient mongoClient = new MongoClient("localhost", 27017);
-        DB database = mongoClient.getDatabase("test");
-        boolean auth = database.authenticate("username", "pwd".toCharArray());*/
-        Person p = new Person();
-        p.setPId(idCounter.incrementAndGet());
-        p.setPName("Andrius");
-        p.setPSurename("surename");
-        p.setPSeatNo(2);
-        p.setPDepartment("Department");
-        p.setPFloor("third floor");
-        p.setPLiveSupportNo("live 1");
-        personDB.put(p.getPId(), p);
+    @Override
+    public List<Person> listPersonByName(String name) {
+        personRepository.findPersonByName(name);
+        return null;
     }
+
 }
