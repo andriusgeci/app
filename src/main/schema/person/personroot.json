@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Revenue Seating Chart",
+  "description": "Revenue seating map of employee's and contractors",
+  "type": "object",
+  "properties": {
+    "pName": {
+      "description": "Name of a person",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 30
+    },
+    "pSurname": {
+      "description": "Surname of a person",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 30
+    },
+    "pDepartment": {
+      "description": "Department in which person is working",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 50
+    },
+    "pSeatNo": {
+      "description": "Seat number",
+      "type": "integer",
+      "minimum": 0,
+      "exclusiveMinimum": true
+    },
+    "pFloor": {
+      "description": "Floor",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 50
+    },
+    "pCompany": {
+      "description": "Companies name",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 255
+    }
+  },
+  "required": [
+    "pName",
+    "pSurname",
+    "pCompany",
+    "pDepartment",
+    "pFloor",
+    "pSeatNo"
+  ]
+}
