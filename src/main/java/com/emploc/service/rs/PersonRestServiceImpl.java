@@ -15,6 +15,8 @@ import javax.validation.constraints.NotNull;
 import javax.ws.rs.BadRequestException;
 import javax.ws.rs.core.Response;
 
+import static com.emploc.utils.AppConstants.WRONG_ID_LABEL;
+
 @Service
 @Slf4j
 public class PersonRestServiceImpl implements PersonRestService {
@@ -27,26 +29,27 @@ public class PersonRestServiceImpl implements PersonRestService {
     }
 
     @Override
-    public Response getPerson(@NotNull int personId) {
-
+    public Response getPerson(@NotNull final String clockCardNo) {
+        log.info("start: getPerson  clockCardNo = {}", clockCardNo);
         final StopWatch timer = StopWatch.createStarted();
         try {
-           // RsCheck.notNullBadRequest();
-            final Person person = personService.getPersonById(personId);
+            RsCheck.badRequest(StringUtils.isNoneBlank(clockCardNo), WRONG_ID_LABEL);
+            final Person person = personService.getPersonById(clockCardNo);
             return Response.ok(person).build();
         } catch (final ValidationException | EntityNotFoundException | BadRequestException e) {
             throw e;
         } catch (final Exception e) {
+            log.warn("andrius" + e.getMessage());
             throw new BadRequestException(e);
-        }finally {
-            log.info("time elapsed ms {}",String.valueOf(timer.getTime()));
+        } finally {
+            log.info("time elapsed ms {}", String.valueOf(timer.getTime()));
         }
     }
 
     @Override
     public Response createPerson(@NotNull final Person person) {
         try {
-           // RsCheck.badRequest(person.getPayload() != null, "payload may not be null");
+            // RsCheck.badRequest(person.getPayload() != null, "payload may not be null");
             return Response.ok(personService.savePerson(person)).build();
         } catch (final ValidationException | BadRequestException e) {
             throw e;

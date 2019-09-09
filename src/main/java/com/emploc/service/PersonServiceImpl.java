@@ -14,25 +14,22 @@ public class PersonServiceImpl implements PersonService {
 
 
     @Autowired
-    PersonRepository personRepository;
+    private PersonRepository personRepository;
 
     public PersonServiceImpl(PersonRepository personRepository) {
         this.personRepository = personRepository;
     }
 
     @Override
-    public Person getPersonById(int personId) {
-
-
-        //return personRepository.findById(personId).isPresent() ?  personRepository.findById(personId).get() : null;
+    public Person getPersonById(String clockCardNo) {
         try {
-            Optional<Person> opt = personRepository.findById(personId);
+            Optional<Person> opt = personRepository.findById(clockCardNo);
             if (opt.isEmpty()) {
-                throw new EntityNotFoundException("Entity with requested id: " + personId + " not found");
+                throw new EntityNotFoundException("Entity with requested id: " + clockCardNo + " not found");
             }
             return opt.get();
         } finally {
-            System.out.println("finally");
+            System.out.println("zzz");
         }
     }
 
