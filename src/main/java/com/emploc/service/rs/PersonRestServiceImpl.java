@@ -15,10 +15,11 @@ import javax.validation.constraints.NotNull;
 import javax.ws.rs.BadRequestException;
 import javax.ws.rs.core.Response;
 
+import static com.emploc.utils.AppConstants.TIME_ELAPSED_MS;
 import static com.emploc.utils.AppConstants.WRONG_ID_LABEL;
 
-@Service
 @Slf4j
+@Service
 public class PersonRestServiceImpl implements PersonRestService {
 
     private final PersonService personService;
@@ -39,26 +40,26 @@ public class PersonRestServiceImpl implements PersonRestService {
         } catch (final ValidationException | EntityNotFoundException | BadRequestException e) {
             throw e;
         } catch (final Exception e) {
-            log.warn("andrius" + e.getMessage());
+            log.warn("error" + e.getMessage());
             throw new BadRequestException(e);
         } finally {
-            log.info("time elapsed ms {}", String.valueOf(timer.getTime()));
+            log.info(TIME_ELAPSED_MS + " {}", String.valueOf(timer.getTime()));
         }
     }
 
     @Override
     public Response createPerson(@NotNull final Person person) {
+        final StopWatch timer = StopWatch.createStarted();
         try {
-            // RsCheck.badRequest(person.getPayload() != null, "payload may not be null");
+            log.info("start: createPerson {}", String.valueOf(person));
             return Response.ok(personService.savePerson(person)).build();
         } catch (final ValidationException | BadRequestException e) {
             throw e;
         } catch (final Exception e) {
-            // logWarn(LOGGER, new MetaBuilder().fromException(e, getClass().getName()).setStackTrace(e));
+            log.warn("error" + e.getMessage());
             throw new BadRequestException(e);
         } finally {
-            // logInfo(LOGGER, new MetaBuilder().setReason("Finish: createBCO").setKeyAndValue(ELAPSE_TIME_MS,
-            //String.valueOf(timer.getTime())));
+            log.info(TIME_ELAPSED_MS + " {}", String.valueOf(timer.getTime()));
         }
     }
 }
