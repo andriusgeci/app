@@ -21,11 +21,11 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public Person getPersonById(String clockCardNo) {
+    public Person getPersonById(String pClockCardNo) {
         try {
-            Optional<Person> opt = personRepository.findById(clockCardNo);
+            Optional<Person> opt = personRepository.findById(pClockCardNo);
             if (opt.isEmpty()) {
-                throw new EntityNotFoundException("Entity with requested id: " + clockCardNo + " not found");
+                throw new EntityNotFoundException("Entity with requested id: " + pClockCardNo + " not found");
             }
             return opt.get();
         } finally {

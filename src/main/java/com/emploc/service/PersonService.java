@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface PersonService {
 
-    Person getPersonById(String clockCardNo);
+    Person getPersonById(String pClockCardNo);
 
     Person savePerson(Person person);
 

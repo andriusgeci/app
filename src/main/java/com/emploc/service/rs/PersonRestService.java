@@ -18,7 +18,7 @@ import static com.emploc.utils.AppConstants.*;
 public interface PersonRestService {
 
     @GET
-    @Path("/person/{clockCardNo}")
+    @Path("/person/{pClockCardNo}")
     @ApiOperation(value = "get Person object by clock card number")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = OK_MSG, response = Person.class),
@@ -26,7 +26,7 @@ public interface PersonRestService {
             @ApiResponse(code = 404, message = NOT_FOUND_MSG, response = CodeMessage.class, responseContainer = "List")
     })
     Response getPerson(
-            @ApiParam(value = "Person clockCardNo", required = true) @NotNull @PathParam("clockCardNo") String clockCardNo
+            @ApiParam(value = "Person pClockCardNo", required = true) @NotNull @PathParam("pClockCardNo") String pClockCardNo
     );
 
     @POST
@@ -37,6 +37,6 @@ public interface PersonRestService {
             @ApiResponse(code = 400, message = ERR_MSG, response = CodeMessage.class, responseContainer = "List")
     })
     Response createPerson(
-            @ApiParam(value = "Person", required = true) @NotNull Person person
+            @ApiParam(value = "Person", required = true) @NotNull(message = "Payload may not be null") Person person
     );
 }

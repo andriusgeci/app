@@ -30,17 +30,17 @@ public class PersonRestServiceImpl implements PersonRestService {
     }
 
     @Override
-    public Response getPerson(@NotNull final String clockCardNo) {
-        log.info("start: getPerson  clockCardNo = {}", clockCardNo);
+    public Response getPerson(@NotNull final String pClockCardNo) {
+        log.info("start: getPerson  clockCardNo = {}", pClockCardNo);
         final StopWatch timer = StopWatch.createStarted();
         try {
-            RsCheck.badRequest(StringUtils.isNoneBlank(clockCardNo), WRONG_ID_LABEL);
-            final Person person = personService.getPersonById(clockCardNo);
+            RsCheck.badRequest(StringUtils.isNoneBlank(pClockCardNo), WRONG_ID_LABEL);
+            final Person person = personService.getPersonById(pClockCardNo);
             return Response.ok(person).build();
         } catch (final ValidationException | EntityNotFoundException | BadRequestException e) {
             throw e;
         } catch (final Exception e) {
-            log.warn("error" + e.getMessage());
+            log.warn("error occurred in getPerson: " + e.getMessage());
             throw new BadRequestException(e);
         } finally {
             log.info(TIME_ELAPSED_MS + " {}", String.valueOf(timer.getTime()));
@@ -56,7 +56,7 @@ public class PersonRestServiceImpl implements PersonRestService {
         } catch (final ValidationException | BadRequestException e) {
             throw e;
         } catch (final Exception e) {
-            log.warn("error" + e.getMessage());
+            log.warn("error occurred in createPerson: " + e.getMessage());
             throw new BadRequestException(e);
         } finally {
             log.info(TIME_ELAPSED_MS + " {}", String.valueOf(timer.getTime()));
