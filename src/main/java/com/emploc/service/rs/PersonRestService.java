@@ -26,7 +26,7 @@ public interface PersonRestService {
             @ApiResponse(code = 404, message = NOT_FOUND_MSG, response = CodeMessage.class, responseContainer = "List")
     })
     Response getPerson(
-            @ApiParam(value = "Person pClockCardNo", required = true) @NotNull @PathParam("pClockCardNo") String pClockCardNo
+            @ApiParam(value = "Person clock card number", required = true) @NotNull @PathParam("pClockCardNo") String pClockCardNo
     );
 
     @POST
@@ -37,6 +37,6 @@ public interface PersonRestService {
             @ApiResponse(code = 400, message = ERR_MSG, response = CodeMessage.class, responseContainer = "List")
     })
     Response createPerson(
-            @ApiParam(value = "Person", required = true) @NotNull(message = "Payload may not be null") Person person
+            @ApiParam(value = "Person", required = true) Person person
     );
 }

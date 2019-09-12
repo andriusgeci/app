@@ -3,7 +3,6 @@ package com.emploc.service.rs;
 import com.emploc.model.Person;
 import com.emploc.service.PersonService;
 import com.emploc.utils.RsCheck;
-import com.emploc.validation.EntityNotFoundException;
 import com.emploc.validation.ValidationException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -11,6 +10,7 @@ import org.apache.commons.lang3.time.StopWatch;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import javax.validation.constraints.NotNull;
 import javax.ws.rs.BadRequestException;
 import javax.ws.rs.core.Response;
@@ -30,7 +30,7 @@ public class PersonRestServiceImpl implements PersonRestService {
     }
 
     @Override
-    public Response getPerson(@NotNull final String pClockCardNo) {
+    public Response getPerson(@NotNull String pClockCardNo) {
         log.info("start: getPerson  clockCardNo = {}", pClockCardNo);
         final StopWatch timer = StopWatch.createStarted();
         try {
@@ -48,10 +48,10 @@ public class PersonRestServiceImpl implements PersonRestService {
     }
 
     @Override
-    public Response createPerson(@NotNull final Person person) {
+    public Response createPerson(final Person person) {
         final StopWatch timer = StopWatch.createStarted();
+        log.info("start: createPerson {}", String.valueOf(person));
         try {
-            log.info("start: createPerson {}", String.valueOf(person));
             return Response.ok(personService.savePerson(person)).build();
         } catch (final ValidationException | BadRequestException e) {
             throw e;

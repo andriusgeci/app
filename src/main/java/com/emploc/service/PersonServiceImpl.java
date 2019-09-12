@@ -2,10 +2,10 @@ package com.emploc.service;
 
 import com.emploc.model.Person;
 import com.emploc.repository.PersonRepository;
-import com.emploc.validation.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,7 +29,7 @@ public class PersonServiceImpl implements PersonService {
             }
             return opt.get();
         } finally {
-            System.out.println("zzz");
+            System.out.println("finally PersonServiceImpl");
         }
     }
 

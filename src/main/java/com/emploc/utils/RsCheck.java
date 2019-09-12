@@ -39,13 +39,17 @@ public class RsCheck {
     }
 
     public static <E extends RuntimeException> void check(final Boolean condition, final Function<String, E> ex, final Supplier<CharSequence> msg) {
+        System.out.println("check" + condition + ex.toString() + "message11"+ msg.get().toString());
         if (ex == null) {
+            System.out.println("np 1");
             throw new NullPointerException("ex is null");
         }
         if (msg == null) {
+            System.out.println("msg null");
             throw new NullPointerException("msg is null");
         }
         if (!condition) {
+            System.out.println("!condition");
             throw ex.apply(msg.get().toString());
         }
     }
