@@ -2,6 +2,7 @@ package com.emploc.service.rs;
 
 import com.emploc.model.CodeMessage;
 import com.emploc.model.Person;
+import com.emploc.model.person.Personroot;
 import io.swagger.annotations.*;
 
 import javax.validation.constraints.NotNull;
@@ -37,6 +38,6 @@ public interface PersonRestService {
             @ApiResponse(code = 400, message = ERR_MSG, response = CodeMessage.class, responseContainer = "List")
     })
     Response createPerson(
-            @ApiParam(value = "Person", required = true) Person person
+            @ApiParam(value = "Person", required = true) Person<Personroot> person
     );
 }

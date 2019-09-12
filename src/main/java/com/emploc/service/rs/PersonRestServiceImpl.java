@@ -1,6 +1,7 @@
 package com.emploc.service.rs;
 
 import com.emploc.model.Person;
+import com.emploc.model.person.Personroot;
 import com.emploc.service.PersonService;
 import com.emploc.utils.RsCheck;
 import com.emploc.validation.ValidationException;
@@ -48,7 +49,7 @@ public class PersonRestServiceImpl implements PersonRestService {
     }
 
     @Override
-    public Response createPerson(final Person person) {
+    public Response createPerson(final Person<Personroot> person) {
         final StopWatch timer = StopWatch.createStarted();
         log.info("start: createPerson {}", String.valueOf(person));
         try {
