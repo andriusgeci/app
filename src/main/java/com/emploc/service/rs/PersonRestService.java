@@ -4,7 +4,9 @@ import com.emploc.model.CodeMessage;
 import com.emploc.model.Person;
 import com.emploc.model.person.Personroot;
 import io.swagger.annotations.*;
+import org.springframework.web.bind.annotation.RequestBody;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -24,7 +26,7 @@ public interface PersonRestService {
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = OK_MSG, response = Person.class),
             @ApiResponse(code = 400, message = ERR_MSG, response = CodeMessage.class, responseContainer = "List"),
-            @ApiResponse(code = 404, message = NOT_FOUND_MSG, response = CodeMessage.class, responseContainer = "List")
+            @ApiResponse(code = 404, message = NOT_FOUND_MSG, response = CodeMessage.class, responseContainer = "List"),
     })
     Response getPerson(
             @ApiParam(value = "Person clock card number", required = true) @NotNull @PathParam("pClockCardNo") String pClockCardNo
@@ -35,9 +37,9 @@ public interface PersonRestService {
     @ApiOperation(value = "Create person object", tags = {"Person"})
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = OK_MSG, response = Person.class),
-            @ApiResponse(code = 400, message = ERR_MSG, response = CodeMessage.class, responseContainer = "List")
+            @ApiResponse(code = 400, message = ERR_MSG, response = CodeMessage.class, responseContainer = "List"),
     })
     Response createPerson(
-            @ApiParam(value = "Person", required = true) Person<Personroot> person
+            @ApiParam(value = "Person", required = true) @Valid @RequestBody Person person
     );
 }

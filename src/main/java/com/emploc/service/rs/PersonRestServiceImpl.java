@@ -49,7 +49,7 @@ public class PersonRestServiceImpl implements PersonRestService {
     }
 
     @Override
-    public Response createPerson(final Person<Personroot> person) {
+    public Response createPerson(final Person person) {
         final StopWatch timer = StopWatch.createStarted();
         log.info("start: createPerson {}", String.valueOf(person));
         try {
