@@ -2,11 +2,8 @@ package com.emploc.service.rs;
 
 import com.emploc.model.CodeMessage;
 import com.emploc.model.Person;
-import com.emploc.model.person.Personroot;
 import io.swagger.annotations.*;
-import org.springframework.web.bind.annotation.RequestBody;
 
-import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -40,6 +37,6 @@ public interface PersonRestService {
             @ApiResponse(code = 400, message = ERR_MSG, response = CodeMessage.class, responseContainer = "List"),
     })
     Response createPerson(
-            @ApiParam(value = "Person", required = true) @Valid @RequestBody Person person
+            @ApiParam(value = "Person", required = true) @NotNull Person person
     );
 }

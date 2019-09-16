@@ -1,7 +1,6 @@
 package com.emploc.service.rs;
 
 import com.emploc.model.Person;
-import com.emploc.model.person.Personroot;
 import com.emploc.service.PersonService;
 import com.emploc.utils.RsCheck;
 import com.emploc.validation.ValidationException;
@@ -12,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
+import javax.validation.Validator;
 import javax.validation.constraints.NotNull;
 import javax.ws.rs.BadRequestException;
 import javax.ws.rs.core.Response;
@@ -24,10 +24,13 @@ import static com.emploc.utils.AppConstants.WRONG_ID_LABEL;
 public class PersonRestServiceImpl implements PersonRestService {
 
     private final PersonService personService;
+    private Validator validator;
 
     @Autowired
-    public PersonRestServiceImpl(PersonService personService) {
+    public PersonRestServiceImpl(PersonService personService, Validator validator) {
+
         this.personService = personService;
+        this.validator = validator;
     }
 
     @Override
@@ -49,10 +52,11 @@ public class PersonRestServiceImpl implements PersonRestService {
     }
 
     @Override
-    public Response createPerson(final Person person) {
+    public Response createPerson(@NotNull final Person person) {
         final StopWatch timer = StopWatch.createStarted();
         log.info("start: createPerson {}", String.valueOf(person));
         try {
+            RsCheck.validate(person, validator, ".");
             return Response.ok(personService.savePerson(person)).build();
         } catch (final ValidationException | BadRequestException e) {
             throw e;
