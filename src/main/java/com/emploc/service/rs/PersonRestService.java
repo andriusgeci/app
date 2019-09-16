@@ -19,7 +19,7 @@ public interface PersonRestService {
 
     @GET
     @Path("/person/{pClockCardNo}")
-    @ApiOperation(value = "get Person object by clock card number")
+    @ApiOperation(value = "get Person object", tags = {"Person"})
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = OK_MSG, response = Person.class),
             @ApiResponse(code = 400, message = ERR_MSG, response = CodeMessage.class, responseContainer = "List"),
@@ -39,4 +39,15 @@ public interface PersonRestService {
     Response createPerson(
             @ApiParam(value = "Person", required = true) @NotNull Person person
     );
+
+    @PUT
+    @Path("person/{pClockCardNo}")
+    @ApiOperation(value = "update Person object", tags = {"Person"})
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = OK_MSG, response = Person.class),
+            @ApiResponse(code = 400, message = ERR_MSG, response = CodeMessage.class, responseContainer = "List"),
+            @ApiResponse(code = 200, message = NOT_FOUND_MSG, response = CodeMessage.class, responseContainer = "List")
+    })
+    Response updatePerson(
+            @ApiParam(value = "Person clock card number", required = true) @NotNull @PathParam("pClockCardNo") String pClockCardNo);
 }
