@@ -37,7 +37,7 @@ public interface PersonRestService {
             @ApiResponse(code = 400, message = ERR_MSG, response = CodeMessage.class, responseContainer = "List"),
     })
     Response createPerson(
-            @ApiParam(value = "Person", required = true) @NotNull Person person
+            @ApiParam(value = "Person object", required = true) @NotNull Person person
     );
 
     @PUT
@@ -46,8 +46,9 @@ public interface PersonRestService {
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = OK_MSG, response = Person.class),
             @ApiResponse(code = 400, message = ERR_MSG, response = CodeMessage.class, responseContainer = "List"),
-            @ApiResponse(code = 200, message = NOT_FOUND_MSG, response = CodeMessage.class, responseContainer = "List")
+            @ApiResponse(code = 404, message = NOT_FOUND_MSG, response = CodeMessage.class, responseContainer = "List")
     })
     Response updatePerson(
-            @ApiParam(value = "Person clock card number", required = true) @NotNull @PathParam("pClockCardNo") String pClockCardNo);
+            @ApiParam(value = "Person clock card number", required = true) @NotNull @PathParam("pClockCardNo") String pClockCardNo,
+            @ApiParam(value = "Person object", required = true) @NotNull Person person);
 }

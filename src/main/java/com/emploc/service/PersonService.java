@@ -10,5 +10,7 @@ public interface PersonService {
 
     Person savePerson(Person person);
 
+    Person saveOld(Person person);
+
     List<Person> listPersonByName(String name);
 }

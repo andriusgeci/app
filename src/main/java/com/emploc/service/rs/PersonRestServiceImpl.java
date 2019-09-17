@@ -16,8 +16,7 @@ import javax.validation.constraints.NotNull;
 import javax.ws.rs.BadRequestException;
 import javax.ws.rs.core.Response;
 
-import static com.emploc.utils.AppConstants.TIME_ELAPSED_MS;
-import static com.emploc.utils.AppConstants.WRONG_ID_LABEL;
+import static com.emploc.utils.AppConstants.*;
 
 @Slf4j
 @Service
@@ -62,6 +61,30 @@ public class PersonRestServiceImpl implements PersonRestService {
             throw e;
         } catch (final Exception e) {
             log.warn("error occurred in createPerson: " + e.getMessage());
+            throw new BadRequestException(e);
+        } finally {
+            log.info(TIME_ELAPSED_MS + " {}", String.valueOf(timer.getTime()));
+        }
+    }
+
+    @Override
+    public Response updatePerson(@NotNull String pClockCardNo, @NotNull Person person) {
+        final StopWatch timer = StopWatch.createStarted();
+        person.setPClockCardNo(pClockCardNo);
+        log.info("start: updatePerson {} with clockCardId {}", person, pClockCardNo);
+        try {
+            RsCheck.badRequest(StringUtils.isNoneBlank(pClockCardNo), WRONG_ID_LABEL);
+            RsCheck.validate(person, validator, ".");
+            return Response.ok(personService.saveOld(person)).build();
+        } catch (final ValidationException | BadRequestException e) {
+            throw e;
+        } catch (final EntityNotFoundException noIdException) {
+            if (StringUtils.isBlank(noIdException.getMessage())) {
+                throw new EntityNotFoundException(NOT_FOUND_MSG + noIdException.getCause());
+            }
+            throw noIdException;
+        } catch (final Exception e) {
+            log.warn("error occurred in updatePerson: " + e.getMessage());
             throw new BadRequestException(e);
         } finally {
             log.info(TIME_ELAPSED_MS + " {}", String.valueOf(timer.getTime()));

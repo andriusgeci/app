@@ -1,6 +1,5 @@
 package com.emploc.model;
 
-
 import com.emploc.model.person.Personroot;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;

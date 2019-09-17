@@ -31,8 +31,12 @@
     "pFloor": {
       "description": "Floor",
       "type": "string",
-      "minLength": 1,
-      "maxLength": 50
+      "enum": [
+        "GROUNDFLOOR",
+        "FIRSTFLOOR",
+        "SECONDFLOOR",
+        "THIRDFLOOR"
+      ]
     },
     "pCompany": {
       "description": "Companies name",
