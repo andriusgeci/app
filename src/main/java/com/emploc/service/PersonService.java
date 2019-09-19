@@ -12,5 +12,7 @@ public interface PersonService {
 
     Person saveOld(Person person);
 
+    Person deletePerson(String pClockCardNo);
+
     List<Person> listPersonByName(String name);
 }

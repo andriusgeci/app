@@ -28,6 +28,13 @@
     </properties>
 
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/io.swagger/swagger-jaxrs -->
+        <dependency>
+            <groupId>io.swagger</groupId>
+            <artifactId>swagger-jaxrs</artifactId>
+            <version>1.5.22</version>
+        </dependency>
+
         <dependency>
             <groupId>com.querydsl</groupId>
             <artifactId>querydsl-mongodb</artifactId>
@@ -81,8 +88,6 @@
             <artifactId>persistence-api</artifactId>
             <version>1.0.2</version>
         </dependency>
-
-
     </dependencies>
 
     <build>

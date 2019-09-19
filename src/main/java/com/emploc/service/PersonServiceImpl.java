@@ -16,7 +16,6 @@ import static com.emploc.utils.AppConstants.NOT_FOUND_MSG;
 @Service
 public class PersonServiceImpl implements PersonService {
 
-
     private PersonRepository personRepository;
     private Validator validator;
 
@@ -29,15 +28,11 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public Person getPersonById(String pClockCardNo) {
-        try {
-            Optional<Person> opt = personRepository.findById(pClockCardNo);
-            if (opt.isEmpty()) {
-                throw new EntityNotFoundException("Entity with requested id: " + pClockCardNo + " not found");
-            }
-            return opt.get();
-        } finally {
-            System.out.println("finally PersonServiceImpl");
+        Optional<Person> opt = personRepository.findById(pClockCardNo);
+        if (opt.isEmpty()) {
+            throw new EntityNotFoundException(NOT_FOUND_MSG + pClockCardNo);
         }
+        return opt.get();
     }
 
     @Override
@@ -48,35 +43,29 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public Person saveOld(Person person) {
-        try {
-
-            final Optional<Person> saved = personRepository.findById(person.getPClockCardNo());
-            RsCheck.validate(person, validator, ".");
-            if (saved.isEmpty()) {
-                throw new EntityNotFoundException("Entity with requested id: " + person.getPClockCardNo() + " not found");
-            }
-            personRepository.save(person);
-           /* final T saved = dao.findById(entity.getId());
-        RsCheck.notNullBadRequest(saved, () -> "there is no record with such id");
-        RsCheck.badRequest(!CmtStatus.PUBLISHED.equals(saved.getStatus()), () -> "attempt to edit published record, use draft copy please");
-        RsCheck.badRequest(saved.getVersion().equals(entity.getVersion()), () -> "optimistic lock error: attempt to save changes based on old record");
-        entity.setLastUpdated(new Date());
-        entity.setLastUpdatedBy(xAegProfileId);
-        entity.setStatus(entity.getStatus() == null ? CmtStatus.DRAFT : entity.getStatus());
-        entity.setVersion(entity.getVersion() + 1);
-
-        RsCheck.validate(entity, validator.getAnnotationValidator(), ".");
-        return dao.update(entity);*/
-            return person;
-        }finally {
-
+        final Optional<Person> saved = personRepository.findById(person.getPClockCardNo());
+        RsCheck.validate(person, validator, ".");
+        if (saved.isEmpty()) {
+            throw new EntityNotFoundException(NOT_FOUND_MSG + person.getPClockCardNo());
         }
-        }
-
-        @Override
-        public List<Person> listPersonByName (String name){
-            personRepository.findPersonByName(name);
-            return null;
-        }
+        personRepository.save(person);
+        return person;
 
     }
+
+    @Override
+    public Person deletePerson(String pClockCardNo) {
+        final Optional<Person> delete = personRepository.findById(pClockCardNo);
+        if (delete.isEmpty()) {
+            throw new EntityNotFoundException(NOT_FOUND_MSG + pClockCardNo);
+        }
+        personRepository.deleteById(pClockCardNo);
+        return delete.get();
+    }
+
+    @Override
+    public List<Person> listPersonByName(String name) {
+        personRepository.findPersonByName(name);
+        return null;
+    }
+}

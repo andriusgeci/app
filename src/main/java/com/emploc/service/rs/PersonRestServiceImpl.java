@@ -34,8 +34,8 @@ public class PersonRestServiceImpl implements PersonRestService {
 
     @Override
     public Response getPerson(@NotNull String pClockCardNo) {
-        log.info("start: getPerson  clockCardNo = {}", pClockCardNo);
         final StopWatch timer = StopWatch.createStarted();
+        log.info("start: getPerson  clockCardNo = {}", pClockCardNo);
         try {
             RsCheck.badRequest(StringUtils.isNoneBlank(pClockCardNo), WRONG_ID_LABEL);
             final Person person = personService.getPersonById(pClockCardNo);
@@ -43,7 +43,7 @@ public class PersonRestServiceImpl implements PersonRestService {
         } catch (final ValidationException | EntityNotFoundException | BadRequestException e) {
             throw e;
         } catch (final Exception e) {
-            log.warn("error occurred in getPerson: " + e.getMessage());
+            log.warn("error occurred in getPerson: " + e.getMessage() + e.getCause() + e.getClass());
             throw new BadRequestException(e);
         } finally {
             log.info(TIME_ELAPSED_MS + " {}", String.valueOf(timer.getTime()));
@@ -71,7 +71,7 @@ public class PersonRestServiceImpl implements PersonRestService {
     public Response updatePerson(@NotNull String pClockCardNo, @NotNull Person person) {
         final StopWatch timer = StopWatch.createStarted();
         person.setPClockCardNo(pClockCardNo);
-        log.info("start: updatePerson {} with clockCardId {}", person, pClockCardNo);
+        log.info("start: updatePerson {} with clockCardId {} ", person, pClockCardNo);
         try {
             RsCheck.badRequest(StringUtils.isNoneBlank(pClockCardNo), WRONG_ID_LABEL);
             RsCheck.validate(person, validator, ".");
@@ -85,6 +85,23 @@ public class PersonRestServiceImpl implements PersonRestService {
             throw noIdException;
         } catch (final Exception e) {
             log.warn("error occurred in updatePerson: " + e.getMessage());
+            throw new BadRequestException(e);
+        } finally {
+            log.info(TIME_ELAPSED_MS + " {}", String.valueOf(timer.getTime()));
+        }
+    }
+
+    @Override
+    public Response deletePerson(@NotNull String pClockCardNo) {
+        final StopWatch timer = StopWatch.createStarted();
+        log.info("start: deletePerson with clockCardId {} ", pClockCardNo);
+        try {
+            RsCheck.badRequest(StringUtils.isNoneBlank(pClockCardNo), WRONG_ID_LABEL);
+            return Response.ok(personService.deletePerson(pClockCardNo)).build();
+        } catch (final ValidationException | EntityNotFoundException | BadRequestException e) {
+            throw e;
+        } catch (final Exception e) {
+            log.warn("error occurred in deletePerson: " + e.getMessage());
             throw new BadRequestException(e);
         } finally {
             log.info(TIME_ELAPSED_MS + " {}", String.valueOf(timer.getTime()));
