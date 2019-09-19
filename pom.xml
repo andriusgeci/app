@@ -25,16 +25,17 @@
         <querydsl.mongodb.version>4.1.3</querydsl.mongodb.version>
         <querydsl.apt.version>4.2.1</querydsl.apt.version>
         <jsonschema2pojo-maven-plugin.version>1.0.1</jsonschema2pojo-maven-plugin.version>
+        <swagger.version>2.0.9</swagger.version>
+        <swagger-ui.version>3.17.0</swagger-ui.version>
+        <mvn-compiler-plugin.version>3.7.0</mvn-compiler-plugin.version>
     </properties>
 
     <dependencies>
-        <!-- https://mvnrepository.com/artifact/io.swagger/swagger-jaxrs -->
         <dependency>
-            <groupId>io.swagger</groupId>
-            <artifactId>swagger-jaxrs</artifactId>
-            <version>1.5.22</version>
+            <groupId>io.swagger.core.v3</groupId>
+            <artifactId>swagger-jaxrs2</artifactId>
+            <version>${swagger.version}</version>
         </dependency>
-
         <dependency>
             <groupId>com.querydsl</groupId>
             <artifactId>querydsl-mongodb</artifactId>
@@ -93,6 +94,29 @@
     <build>
         <plugins>
             <plugin>
+                <!-- Download Swagger UI webjar. -->
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>${maven-dependency-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>org.webjars</groupId>
+                                    <artifactId>swagger-ui</artifactId>
+                                    <version>${swagger-ui.version}</version>
+                                </artifactItem>
+                            </artifactItems>
+                            <outputDirectory>${project.build.directory}/swagger-ui</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <groupId>org.jsonschema2pojo</groupId>
                 <artifactId>jsonschema2pojo-maven-plugin</artifactId>
                 <version>${jsonschema2pojo-maven-plugin.version}</version>
@@ -108,7 +132,6 @@
                     <addCompileSourceRoot>true</addCompileSourceRoot>
                     <initializeCollections>false</initializeCollections>
                     <generateBuilders>true</generateBuilders>
-
                     <includeAdditionalProperties>false</includeAdditionalProperties>
                     <includeDynamicAccessors>false</includeDynamicAccessors>
                     <includeDynamicBuilders>false</includeDynamicBuilders>
