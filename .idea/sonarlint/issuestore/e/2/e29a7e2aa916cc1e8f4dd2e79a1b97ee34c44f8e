@@ -1,7 +1,4 @@
 
+Isquid:S1168-"+Return an empty collection instead of null.(¥¹ï8šª†²Ñ-
 [
-squid:S106'"9Replace this use of System.out or System.err by a logger.(¿Áéúÿÿÿÿ8šª†²Ñ-
-Hsquid:S00108G")Either remove or fill this block of code.(Úîø›8¦ƒæùÓ-
-Isquid:S1168O"+Return an empty collection instead of null.(¥¹ï8šª†²Ñ-
-isquid:CommentedOutCodeLine;"<This block of commented-out lines of code should be removed.(ÿØı´8ÏäçïÓ-
-ssquid:UselessImportCheck"HRemove this unused import 'com.emploc.utils.AppConstants.NOT_FOUND_MSG'.(ÓÄóá8—ù£‚Ô-
+squid:S106 "9Replace this use of System.out or System.err by a logger.(¿Áéúÿÿÿÿ8šª†²Ñ-

@@ -47,3 +47,5 @@ V
 &src/main/schema/person/personroot.json,4\7\47b3b6d58f7ad1199e1cd8b3d7a86106d7b8cf5c
 m
 =src/main/java/com/emploc/validation/EntityNotFoundMapper.java,7\8\78f0345cb0f5c466aa98e0a6cfdf40a9db24f6dc
+_
+/src/main/java/com/emploc/model/MongoEntity.java,8\9\895808700ed893d158762605476f15a2341da886
