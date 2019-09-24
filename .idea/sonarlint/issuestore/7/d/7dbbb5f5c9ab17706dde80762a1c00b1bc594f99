@@ -1,12 +1,12 @@
 
-U
-squid:S1060"9Replace this use of System.out or System.err by a logger.(ê«Œ48»Ã¼øÑ-
-bsquid:S2583+"DChange this condition so that it does not always evaluate to "false"( ¢Ë8‰ÁÄøÑ-
+V
+squid:S106*"9Replace this use of System.out or System.err by a logger.(¦¢íÖ8ü´¾øÑ-
 Hsquid:S54113"*Use the primitive boolean expression here.(ø—Äª8Ï‹ş­Ï-
 V
 squid:S106,"9Replace this use of System.out or System.err by a logger.(·Ã¼é8ÔÒ»øÑ-
 [
 squid:S1064"9Replace this use of System.out or System.err by a logger.(õÅ™Ëûÿÿÿÿ8òÀ½øÑ-
-V
-squid:S106*"9Replace this use of System.out or System.err by a logger.(¦¢íÖ8ü´¾øÑ-
+U
+squid:S1060"9Replace this use of System.out or System.err by a logger.(ê«Œ48»Ã¼øÑ-
+bsquid:S2583+"DChange this condition so that it does not always evaluate to "false"( ¢Ë8‰ÁÄøÑ-
 bsquid:S2583/"DChange this condition so that it does not always evaluate to "false"(ğÛ¿œ8ˆ»ÅøÑ-
