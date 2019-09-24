@@ -18,34 +18,46 @@
         <spring.boot.starter.jersey.version>2.1.7.RELEASE</spring.boot.starter.jersey.version>
         <spring.boot.starter.test.version>2.1.7.RELEASE</spring.boot.starter.test.version>
         <lombok.version>1.18.8</lombok.version>
-        <springfox.swagger2.version>2.9.2</springfox.swagger2.version>
         <apache.commons.lang3.version>3.9</apache.commons.lang3.version>
         <openpojo.version>0.8.12</openpojo.version>
         <spring.boot.starter.data.mongodb.version>2.1.7.RELEASE</spring.boot.starter.data.mongodb.version>
         <querydsl.mongodb.version>4.1.3</querydsl.mongodb.version>
         <querydsl.apt.version>4.2.1</querydsl.apt.version>
         <jsonschema2pojo-maven-plugin.version>1.0.1</jsonschema2pojo-maven-plugin.version>
-        <swagger.version>2.0.9</swagger.version>
         <persistence.api.version>1.0.2</persistence.api.version>
+        <swagger.jersey2.jarxrs.version>1.5.23</swagger.jersey2.jarxrs.version>
+        <spring.boot.starter.actuator.version>2.1.7.RELEASE</spring.boot.starter.actuator.version>
     </properties>
+
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>2.1.7.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
         <dependency>
-            <groupId>io.swagger</groupId>
-            <artifactId>swagger-jersey-jaxrs</artifactId>
-            <version>1.5.23</version>
-        </dependency>
-
-      <!--  <dependency>
-            <groupId>io.swagger.core.v3</groupId>
-            <artifactId>swagger-jaxrs2-servlet-initializer</artifactId>
-            <version>${swagger.version}</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <version>2.1.7.RELEASE</version>
         </dependency>
         <dependency>
-            <groupId>io.swagger.core.v3</groupId>
-            <artifactId>swagger-jaxrs2</artifactId>
-            <version>${swagger.version}</version>
-        </dependency>-->
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+            <version>${spring.boot.starter.actuator.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.swagger</groupId>
+            <artifactId>swagger-jersey2-jaxrs</artifactId>
+            <version>${swagger.jersey2.jarxrs.version}</version>
+        </dependency>
         <dependency>
             <groupId>com.querydsl</groupId>
             <artifactId>querydsl-mongodb</artifactId>
@@ -71,11 +83,6 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>${apache.commons.lang3.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger2</artifactId>
-            <version>${springfox.swagger2.version}</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>

@@ -6,9 +6,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 @SpringBootApplication(scanBasePackages = {
-        "com.emploc.config",
-        "com.emploc.service",
-        "com.emploc.service.rs",
+        "com.emploc"
 })
 public class Application extends SpringBootServletInitializer {
 

@@ -29,13 +29,14 @@ import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY;
         "pclockCardNo",
         "pname",
         "psurname",
-        "pTitle",
+        "ptitle",
         "pcompany",
         "pfloor",
         "pdepartment",
         "pseatNo"
 })
 public class Person extends Personroot implements Serializable {
+
     private static final long serialVersionUID = -4377695081859768454L;
 
     @Id

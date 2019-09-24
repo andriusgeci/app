@@ -30,7 +30,7 @@ public class PersonServiceImpl implements PersonService {
     public Person getPersonById(String pClockCardNo) {
         Optional<Person> opt = personRepository.findById(pClockCardNo);
         if (opt.isEmpty()) {
-            throw new EntityNotFoundException(NOT_FOUND_MSG + pClockCardNo);
+            throw new EntityNotFoundException(String.format("%s : %s", NOT_FOUND_MSG, pClockCardNo));
         }
         return opt.get();
     }
@@ -46,7 +46,7 @@ public class PersonServiceImpl implements PersonService {
         final Optional<Person> saved = personRepository.findById(person.getPClockCardNo());
         RsCheck.validate(person, validator, ".");
         if (saved.isEmpty()) {
-            throw new EntityNotFoundException(NOT_FOUND_MSG + person.getPClockCardNo());
+            throw new EntityNotFoundException(String.format("%s : %s", NOT_FOUND_MSG, person.getPClockCardNo()));
         }
         personRepository.save(person);
         return person;
@@ -57,7 +57,7 @@ public class PersonServiceImpl implements PersonService {
     public Person deletePerson(String pClockCardNo) {
         final Optional<Person> delete = personRepository.findById(pClockCardNo);
         if (delete.isEmpty()) {
-            throw new EntityNotFoundException(NOT_FOUND_MSG + pClockCardNo);
+            throw new EntityNotFoundException(String.format("%s : %s", NOT_FOUND_MSG, pClockCardNo));
         }
         personRepository.deleteById(pClockCardNo);
         return delete.get();

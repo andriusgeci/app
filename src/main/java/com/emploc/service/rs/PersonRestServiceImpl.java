@@ -43,10 +43,10 @@ public class PersonRestServiceImpl implements PersonRestService {
         } catch (final ValidationException | EntityNotFoundException | BadRequestException e) {
             throw e;
         } catch (final Exception e) {
-            log.warn("error occurred in getPerson: " + e.getMessage() + e.getCause() + e.getClass());
+            log.warn("error occurred in getPerson: {}", e.getMessage());
             throw new BadRequestException(e);
         } finally {
-            log.info(TIME_ELAPSED_MS + " {}", String.valueOf(timer.getTime()));
+            log.info("{} {}", TIME_ELAPSED_MS, String.valueOf(timer.getTime()));
         }
     }
 
@@ -60,10 +60,10 @@ public class PersonRestServiceImpl implements PersonRestService {
         } catch (final ValidationException | BadRequestException e) {
             throw e;
         } catch (final Exception e) {
-            log.warn("error occurred in createPerson: " + e.getMessage());
+            log.warn("error occurred in createPerson: {}", e.getMessage());
             throw new BadRequestException(e);
         } finally {
-            log.info(TIME_ELAPSED_MS + " {}", String.valueOf(timer.getTime()));
+            log.info("{} {}", TIME_ELAPSED_MS, String.valueOf(timer.getTime()));
         }
     }
 
@@ -84,10 +84,10 @@ public class PersonRestServiceImpl implements PersonRestService {
             }
             throw noIdException;
         } catch (final Exception e) {
-            log.warn("error occurred in updatePerson: " + e.getMessage());
+            log.warn("error occurred in updatePerson: {}", e.getMessage());
             throw new BadRequestException(e);
         } finally {
-            log.info(TIME_ELAPSED_MS + " {}", String.valueOf(timer.getTime()));
+            log.info("{} {}", TIME_ELAPSED_MS, String.valueOf(timer.getTime()));
         }
     }
 
@@ -101,10 +101,10 @@ public class PersonRestServiceImpl implements PersonRestService {
         } catch (final ValidationException | EntityNotFoundException | BadRequestException e) {
             throw e;
         } catch (final Exception e) {
-            log.warn("error occurred in deletePerson: " + e.getMessage());
+            log.warn("error occurred in deletePerson: {}", e.getMessage());
             throw new BadRequestException(e);
         } finally {
-            log.info(TIME_ELAPSED_MS + " {}", String.valueOf(timer.getTime()));
+            log.info("{} {}", TIME_ELAPSED_MS, String.valueOf(timer.getTime()));
         }
     }
 }
