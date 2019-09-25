@@ -4,20 +4,15 @@ import com.emploc.service.rs.PersonRestServiceImpl;
 import com.emploc.validation.BadRequestMapper;
 import com.emploc.validation.EntityNotFoundMapper;
 import com.emploc.validation.ValidationExceptionMapper;
-import io.swagger.annotations.ApiParam;
 import io.swagger.jaxrs.config.BeanConfig;
-import io.swagger.jaxrs.config.SwaggerScannerLocator;
 import io.swagger.jaxrs.listing.ApiListingResource;
 import io.swagger.jaxrs.listing.SwaggerSerializers;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.server.wadl.internal.WadlResource;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
-
-import static io.swagger.jaxrs.config.SwaggerContextService.SCANNER_ID_DEFAULT;
 
 @Component
 public class JerseyConfig extends ResourceConfig {
@@ -25,7 +20,6 @@ public class JerseyConfig extends ResourceConfig {
     @Value("${spring.jersey.application-path:/}")
     private String apiPath;
 
-    @Autowired
     public JerseyConfig() {
         this.registerEndpoints();
     }
@@ -40,16 +34,15 @@ public class JerseyConfig extends ResourceConfig {
         this.register(SwaggerSerializers.class);
 
         BeanConfig config = new BeanConfig();
-        config.setConfigId("test");
-        config.setTitle("test");
-        config.setVersion("test");
-        config.setContact("test");
+        config.setConfigId("1");
+        config.setTitle("Person Locatio ");
+        config.setVersion("1");
+        config.setContact("andriusgeci@gmail.com");
         config.setSchemes(new String[]{"http,https"});
         config.setBasePath(this.apiPath);
         config.setResourcePackage("com.emploc.service.rs");
         config.setPrettyPrint(true);
         config.setScan(true);
-        //SwaggerScannerLocator.getInstance().putScanner(SCANNER_ID_DEFAULT, config);
     }
 
     private void registerEndpoints() {
@@ -58,6 +51,5 @@ public class JerseyConfig extends ResourceConfig {
         this.register(BadRequestMapper.class);
         this.register(ValidationExceptionMapper.class);
         this.register(WadlResource.class);
-
     }
 }

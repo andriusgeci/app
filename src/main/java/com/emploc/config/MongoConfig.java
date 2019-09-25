@@ -33,13 +33,4 @@ public class MongoConfig extends AbstractMongoConfiguration {
     protected String getDatabaseName() {
         return env.getProperty("mongo.database");
     }
-
-    /*MongoClient mongoClient = MongoClients.create();
-
-    CodecRegistry pojoCodecRegistry = fromRegistries(MongoClientSettings.getDefaultCodecRegistry(),
-            fromProviders(PojoCodecProvider.builder().automatic(true).build()));
-
-    MongoDatabase mongoDatabase = mongoClient.getDatabase("mongoDB").withCodecRegistry(pojoCodecRegistry);
-    MongoCollection<Person> collection = mongoDatabase.getCollection("persons", Person.class);*/
-
 }

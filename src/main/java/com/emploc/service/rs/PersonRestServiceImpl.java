@@ -46,7 +46,7 @@ public class PersonRestServiceImpl implements PersonRestService {
             log.warn("error occurred in getPerson: {}", e.getMessage());
             throw new BadRequestException(e);
         } finally {
-            log.info("{} {}", TIME_ELAPSED_MS, String.valueOf(timer.getTime()));
+            log.info(LOG_CURLY_BRACES, TIME_ELAPSED_MS, String.valueOf(timer.getTime()));
         }
     }
 
@@ -63,7 +63,7 @@ public class PersonRestServiceImpl implements PersonRestService {
             log.warn("error occurred in createPerson: {}", e.getMessage());
             throw new BadRequestException(e);
         } finally {
-            log.info("{} {}", TIME_ELAPSED_MS, String.valueOf(timer.getTime()));
+            log.info(LOG_CURLY_BRACES, TIME_ELAPSED_MS, String.valueOf(timer.getTime()));
         }
     }
 
@@ -87,7 +87,7 @@ public class PersonRestServiceImpl implements PersonRestService {
             log.warn("error occurred in updatePerson: {}", e.getMessage());
             throw new BadRequestException(e);
         } finally {
-            log.info("{} {}", TIME_ELAPSED_MS, String.valueOf(timer.getTime()));
+            log.info(LOG_CURLY_BRACES, TIME_ELAPSED_MS, String.valueOf(timer.getTime()));
         }
     }
 
@@ -104,7 +104,7 @@ public class PersonRestServiceImpl implements PersonRestService {
             log.warn("error occurred in deletePerson: {}", e.getMessage());
             throw new BadRequestException(e);
         } finally {
-            log.info("{} {}", TIME_ELAPSED_MS, String.valueOf(timer.getTime()));
+            log.info(LOG_CURLY_BRACES, TIME_ELAPSED_MS, String.valueOf(timer.getTime()));
         }
     }
 }
