@@ -5,28 +5,28 @@
   "type": "object",
   "properties": {
     "pName": {
-      "description": "Name of a person",
+      "description": "First Name",
       "type": "string",
-      "pattern": "^[a-zA-Z]+$",
+      "pattern": "^[\p{L} .'-]+$",
       "minLength": 3,
       "maxLength": 30
     },
     "pSurname": {
-      "description": "Surname of a person",
+      "description": "Surname",
       "type": "string",
       "pattern": "^[a-zA-Z]+$",
       "minLength": 3,
       "maxLength": 30
     },
     "pTitle": {
-      "description": "Job title of a person",
+      "description": "Job Title",
       "type": "string",
       "pattern": "^[a-zA-Z]+$",
       "minLength": 3,
       "maxLength": 255
     },
     "pDepartment": {
-      "description": "Department in which person is working",
+      "description": "Department",
       "type": "string",
       "pattern": "^[a-zA-Z]+$",
       "minLength": 3,
@@ -49,7 +49,7 @@
       ]
     },
     "pCompany": {
-      "description": "Companies name",
+      "description": "Company",
       "type": "string",
       "pattern": "^[a-zA-Z]+$",
       "minLength": 3,
