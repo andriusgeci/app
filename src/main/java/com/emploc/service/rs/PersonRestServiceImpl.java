@@ -107,4 +107,9 @@ public class PersonRestServiceImpl implements PersonRestService {
             log.info(LOG_CURLY_BRACES, TIME_ELAPSED_MS, String.valueOf(timer.getTime()));
         }
     }
+
+    @Override
+    public Response listPerson() {
+        return Response.ok(personService.listPerson()).build();
+    }
 }

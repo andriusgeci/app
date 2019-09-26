@@ -7,28 +7,28 @@
     "pName": {
       "description": "First Name",
       "type": "string",
-      "pattern": "^[\p{L} .'-]+$",
+      "pattern": "^[\\p{L} .'-]+$",
       "minLength": 3,
       "maxLength": 30
     },
     "pSurname": {
       "description": "Surname",
       "type": "string",
-      "pattern": "^[a-zA-Z]+$",
+      "pattern": "^[\\p{L} .'-]+$",
       "minLength": 3,
       "maxLength": 30
     },
     "pTitle": {
       "description": "Job Title",
       "type": "string",
-      "pattern": "^[a-zA-Z]+$",
+      "pattern": "^[\\p{L} .'-]+$",
       "minLength": 3,
       "maxLength": 255
     },
     "pDepartment": {
       "description": "Department",
       "type": "string",
-      "pattern": "^[a-zA-Z]+$",
+      "pattern": "^[\\p{L} .'-]+$",
       "minLength": 3,
       "maxLength": 50
     },
@@ -51,7 +51,7 @@
     "pCompany": {
       "description": "Company",
       "type": "string",
-      "pattern": "^[a-zA-Z]+$",
+      "pattern": "^[\\p{L} .'-]+$",
       "minLength": 3,
       "maxLength": 255
     }

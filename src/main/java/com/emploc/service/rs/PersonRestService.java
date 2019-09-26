@@ -2,6 +2,7 @@ package com.emploc.service.rs;
 
 import com.emploc.model.CodeMessage;
 import com.emploc.model.Person;
+import com.emploc.model.PersonList;
 import io.swagger.annotations.*;
 
 import javax.validation.constraints.NotNull;
@@ -64,4 +65,13 @@ public interface PersonRestService {
     Response deletePerson(
             @ApiParam(value = "Person clock card number", required = true) @NotNull @PathParam("pClockCardNo") String pClockCardNo
     );
+
+    @GET
+    @Path("personList")
+    @ApiOperation(value = "list all Person's", tags = {"Persons"})
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = OK_MSG, response = PersonList.class),
+            @ApiResponse(code = 400, message = ERR_MSG_LIST, response = PersonList.class),
+    })
+    Response listPerson();
 }

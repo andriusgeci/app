@@ -8,4 +8,5 @@ public class AppConstants {
     public static final String WRONG_ID_LABEL = "wrong id";
     public static final String TIME_ELAPSED_MS = "time elapsed ms";
     public static final String LOG_CURLY_BRACES = "{} {}";
+    public static final String ERR_MSG_LIST = "Error listing Person objects";
 }
