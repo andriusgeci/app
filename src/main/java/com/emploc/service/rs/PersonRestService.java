@@ -67,11 +67,14 @@ public interface PersonRestService {
     );
 
     @GET
-    @Path("personList")
-    @ApiOperation(value = "list all Person's", tags = {"Persons"})
+    @Path("/listPerson/{pName}")
+    @ApiOperation(value = "list all Person's by the name", tags = {"Persons"})
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = OK_MSG, response = PersonList.class),
             @ApiResponse(code = 400, message = ERR_MSG_LIST, response = PersonList.class),
+            @ApiResponse(code = 404, message = NOT_FOUND_MSG, response = CodeMessage.class, responseContainer = "List"),
     })
-    Response listPerson();
+    Response listPersonsByName(
+            @ApiParam(value = "Person's name", required = true) @NotNull @PathParam("pName") String pName
+    );
 }

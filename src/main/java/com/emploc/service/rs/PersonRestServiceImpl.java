@@ -109,7 +109,20 @@ public class PersonRestServiceImpl implements PersonRestService {
     }
 
     @Override
-    public Response listPerson() {
-        return Response.ok(personService.listPerson()).build();
+    public Response listPersonsByName(@NotNull String pName) {
+        final StopWatch timer = StopWatch.createStarted();
+        log.info("start: listPersons with name: {} ", pName);
+        try {
+            RsCheck.badRequest(StringUtils.isNoneBlank(pName), WRONG_ID_LABEL);
+            return Response.ok(personService.getPersonByName(pName)).build();
+        } catch (final ValidationException | EntityNotFoundException | BadRequestException e) {
+            throw e;
+
+        } catch (final Exception e) {
+            log.warn("error occurred in listPersonsByName: {}", e.getMessage());
+            throw new BadRequestException(e);
+        } finally {
+            log.info(LOG_CURLY_BRACES, TIME_ELAPSED_MS, String.valueOf(timer.getTime()));
+        }
     }
 }

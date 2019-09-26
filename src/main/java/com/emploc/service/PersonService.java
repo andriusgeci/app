@@ -14,5 +14,5 @@ public interface PersonService {
 
     Person deletePerson(String pClockCardNo);
 
-    List<Person> listPerson();
+    List<Person> getPersonByName(String pName);
 }

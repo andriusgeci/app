@@ -10,6 +10,6 @@ import java.util.List;
 @Repository
 public interface PersonRepository extends MongoRepository<Person, String> {
 
-    @Query("{'pName':?0}")
+    @Query(value = "{'pName:?0'}")
     List<Person> findPersonByName(String pName);
 }
