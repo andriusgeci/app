@@ -14,5 +14,5 @@ public interface PersonService {
 
     Person deletePerson(String pClockCardNo);
 
-    List<Person> getPersonByName(String pName);
+    List<Person> findPerson(Person person) throws NoSuchFieldException;
 }

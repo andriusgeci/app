@@ -10,6 +10,8 @@ import java.util.List;
 @Repository
 public interface PersonRepository extends MongoRepository<Person, String> {
 
-    @Query(value = "{'pName:?0'}")
-    List<Person> findPersonByName(String pName);
+    //b.articles.find( { $text: { $search: "coffee",$caseSensitive :true } } )
+    //@Query(value = "{'pName':?0,$caseSensitive:false}")
+    //@Query(value = "{$text:{$search:'pName',$caseSensitive:false}")
+    //List<Person> findPersonByName(String pName);
 }

@@ -1,6 +1,7 @@
 package com.emploc.service.rs;
 
 import com.emploc.model.Person;
+import com.emploc.model.PersonFilter;
 import com.emploc.service.PersonService;
 import com.emploc.utils.RsCheck;
 import com.emploc.validation.ValidationException;
@@ -109,15 +110,15 @@ public class PersonRestServiceImpl implements PersonRestService {
     }
 
     @Override
-    public Response listPersonsByName(@NotNull String pName) {
+    public Response listPersonsByName(Person person) {
         final StopWatch timer = StopWatch.createStarted();
-        log.info("start: listPersons with name: {} ", pName);
+        log.info("start: listPersons with {} ", person);
         try {
-            RsCheck.badRequest(StringUtils.isNoneBlank(pName), WRONG_ID_LABEL);
-            return Response.ok(personService.getPersonByName(pName)).build();
+            /*RsCheck.badRequest(StringUtils.isNoneBlank(key), WRONG_ID_LABEL);
+            RsCheck.badRequest(StringUtils.isNoneBlank(pair), WRONG_ID_LABEL);*/
+            return Response.ok(personService.findPerson(person)).build();
         } catch (final ValidationException | EntityNotFoundException | BadRequestException e) {
             throw e;
-
         } catch (final Exception e) {
             log.warn("error occurred in listPersonsByName: {}", e.getMessage());
             throw new BadRequestException(e);

@@ -38,7 +38,7 @@ public class JerseyConfig extends ResourceConfig {
         config.setTitle("Person Locatio ");
         config.setVersion("1");
         config.setContact("andriusgeci@gmail.com");
-        config.setSchemes(new String[]{"http,https"});
+        config.setSchemes(new String[]{"HTTP,HTTPS"});
         config.setBasePath(this.apiPath);
         config.setResourcePackage("com.emploc.service.rs");
         config.setPrettyPrint(true);

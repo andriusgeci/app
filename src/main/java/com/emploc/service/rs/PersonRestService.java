@@ -2,6 +2,7 @@ package com.emploc.service.rs;
 
 import com.emploc.model.CodeMessage;
 import com.emploc.model.Person;
+import com.emploc.model.PersonFilter;
 import com.emploc.model.PersonList;
 import io.swagger.annotations.*;
 
@@ -66,8 +67,8 @@ public interface PersonRestService {
             @ApiParam(value = "Person clock card number", required = true) @NotNull @PathParam("pClockCardNo") String pClockCardNo
     );
 
-    @GET
-    @Path("/listPerson/{pName}")
+    @POST
+    @Path("/listPerson")
     @ApiOperation(value = "list all Person's by the name", tags = {"Persons"})
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = OK_MSG, response = PersonList.class),
@@ -75,6 +76,6 @@ public interface PersonRestService {
             @ApiResponse(code = 404, message = NOT_FOUND_MSG, response = CodeMessage.class, responseContainer = "List"),
     })
     Response listPersonsByName(
-            @ApiParam(value = "Person's name", required = true) @NotNull @PathParam("pName") String pName
+            @ApiParam(value = "Person's name", required = true) Person person
     );
 }
