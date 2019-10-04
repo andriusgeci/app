@@ -110,7 +110,7 @@ public class PersonRestServiceImpl implements PersonRestService {
     }
 
     @Override
-    public Response listPersonsByName(Person person) {
+    public Response listPersonsByName(PersonFilter person) {
         final StopWatch timer = StopWatch.createStarted();
         log.info("start: listPersons with {} ", person);
         try {

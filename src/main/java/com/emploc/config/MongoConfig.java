@@ -1,3 +1,4 @@
+/*
 package com.emploc.config;
 
 import com.emploc.model.Person;
@@ -56,4 +57,6 @@ public class MongoConfig extends AbstractMongoConfiguration {
 
     }
 
+
 }
+*/

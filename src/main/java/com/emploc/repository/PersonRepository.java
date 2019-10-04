@@ -1,3 +1,4 @@
+/*
 package com.emploc.repository;
 
 import com.emploc.model.Person;
@@ -13,5 +14,9 @@ public interface PersonRepository extends MongoRepository<Person, String> {
     //b.articles.find( { $text: { $search: "coffee",$caseSensitive :true } } )
     //@Query(value = "{'pName':?0,$caseSensitive:false}")
     //@Query(value = "{$text:{$search:'pName',$caseSensitive:false}")
+
     //List<Person> findPersonByName(String pName);
+
+
 }
+*/
