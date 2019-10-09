@@ -1,0 +1,24 @@
+{
+  "items": [
+    {
+      "pclockCardNo": "1",
+      "pName": "nameOne",
+      "pSurname": "surnameOne",
+      "pTitle": "developerOne",
+      "pDepartment": "departmentOne",
+      "pSeatNo": 1,
+      "pFloor": "GROUNDFLOOR",
+      "pCompany": "companyOne"
+    },
+    {
+      "pclockCardNo": "2",
+      "pName": "nameTwo",
+      "pSurname": "surnameTwo",
+      "pTitle": "developerTwo ",
+      "pDepartment": "departmentTwo",
+      "pSeatNo": 2,
+      "pFloor": "GROUNDFLOOR",
+      "pCompany": "companyTwo"
+    }
+  ]
+}

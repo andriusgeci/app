@@ -1,9 +1,8 @@
 package com.emploc.service;
 
+import com.emploc.model.ListableResponse;
 import com.emploc.model.Person;
 import com.emploc.model.PersonFilter;
-
-import java.util.List;
 
 public interface PersonService {
 
@@ -15,5 +14,5 @@ public interface PersonService {
 
     Person deletePerson(String pClockCardNo);
 
-    List<Person> findPerson(PersonFilter personFilter) throws NoSuchFieldException;
+    ListableResponse<Person> findPerson(PersonFilter personFilter) throws NoSuchFieldException;
 }

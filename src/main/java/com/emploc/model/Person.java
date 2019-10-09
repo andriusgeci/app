@@ -40,8 +40,9 @@ public class Person extends Personroot implements Serializable {
 
     private static final long serialVersionUID = -4377695081859768454L;
 
-    @Pattern(regexp = "^[0-9]+$")
+    @Id
     @Max(255)
     @Min(0)
+    @Pattern(regexp = "^[0-9]+$")
     private String pClockCardNo;
 }

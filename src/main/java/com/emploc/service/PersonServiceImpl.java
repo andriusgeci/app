@@ -1,5 +1,6 @@
 package com.emploc.service;
 
+import com.emploc.model.ListableResponse;
 import com.emploc.model.Person;
 import com.emploc.model.PersonFilter;
 import com.emploc.repository.PersonRepository;
@@ -70,13 +71,15 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public List<Person> findPerson(PersonFilter personFilter) {
+    public ListableResponse<Person> findPerson(PersonFilter personFilter) {
+        final ListableResponse<Person> result = new ListableResponse<>();
         final List<Person> personList = mongoTemplate
                 .find(Query.query(Criteria.where(personFilter.getKey())
                         .regex(personFilter.getValue(), "i")), Person.class);
         if (personList.isEmpty()) {
             throw new EntityNotFoundException(String.format("%s : %s", NOT_FOUND_MSG, personFilter.getValue()));
         }
-        return personList;
+        result.setItems(personList);
+        return result;
     }
 }
