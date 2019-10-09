@@ -69,13 +69,13 @@ public interface PersonRestService {
 
     @POST
     @Path("/listPerson")
-    @ApiOperation(value = "list all Person's by the name", tags = {"Persons"})
+    @ApiOperation(value = "Search based on key/value pair's", tags = {"Person Filter"})
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = OK_MSG, response = PersonList.class),
             @ApiResponse(code = 400, message = ERR_MSG_LIST, response = PersonList.class),
             @ApiResponse(code = 404, message = NOT_FOUND_MSG, response = CodeMessage.class, responseContainer = "List"),
     })
     Response listPersonsByName(
-            @ApiParam(value = "Person's name", required = true) Person person
+            @ApiParam(value = "Person's filter", required = true) @NotNull PersonFilter personFilter
     );
 }

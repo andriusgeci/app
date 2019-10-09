@@ -34,7 +34,7 @@ public class PersonRestServiceImpl implements PersonRestService {
     }
 
     @Override
-    public Response getPerson(@NotNull String pClockCardNo) {
+    public Response getPerson(@NotNull final String pClockCardNo) {
         final StopWatch timer = StopWatch.createStarted();
         log.info("start: getPerson  clockCardNo = {}", pClockCardNo);
         try {
@@ -69,7 +69,7 @@ public class PersonRestServiceImpl implements PersonRestService {
     }
 
     @Override
-    public Response updatePerson(@NotNull String pClockCardNo, @NotNull Person person) {
+    public Response updatePerson(@NotNull final String pClockCardNo, @NotNull final Person person) {
         final StopWatch timer = StopWatch.createStarted();
         person.setPClockCardNo(pClockCardNo);
         log.info("start: updatePerson {} with clockCardId {} ", person, pClockCardNo);
@@ -93,7 +93,7 @@ public class PersonRestServiceImpl implements PersonRestService {
     }
 
     @Override
-    public Response deletePerson(@NotNull String pClockCardNo) {
+    public Response deletePerson(@NotNull final String pClockCardNo) {
         final StopWatch timer = StopWatch.createStarted();
         log.info("start: deletePerson with clockCardId {} ", pClockCardNo);
         try {
@@ -110,13 +110,12 @@ public class PersonRestServiceImpl implements PersonRestService {
     }
 
     @Override
-    public Response listPersonsByName(Person person) {
+    public Response listPersonsByName(@NotNull final PersonFilter personFilter) {
         final StopWatch timer = StopWatch.createStarted();
-        log.info("start: listPersons with {} ", person);
+        log.info("start: listPersons with {} ", personFilter);
         try {
-            /*RsCheck.badRequest(StringUtils.isNoneBlank(key), WRONG_ID_LABEL);
-            RsCheck.badRequest(StringUtils.isNoneBlank(pair), WRONG_ID_LABEL);*/
-            return Response.ok(personService.findPerson(person)).build();
+            RsCheck.validate(personFilter, validator, ".");
+            return Response.ok(personService.findPerson(personFilter)).build();
         } catch (final ValidationException | EntityNotFoundException | BadRequestException e) {
             throw e;
         } catch (final Exception e) {
