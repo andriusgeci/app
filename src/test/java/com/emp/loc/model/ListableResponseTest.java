@@ -10,11 +10,9 @@ import org.junit.Test;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
-import java.util.HashMap;
 
 import static com.emploc.model.person.Personroot.PFloor.GROUNDFLOOR;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.assertEquals;
 
 public class ListableResponseTest {
 
@@ -30,7 +28,7 @@ public class ListableResponseTest {
         final ListableResponse<Person> created = new ListableResponse<>();
 
         Person pOne = new Person();
-        pOne.setPClockCardNo("1");
+        pOne.setPClockCardNo("6");
         pOne.setpName("test");
         pOne.setpSurname("test");
         pOne.setpCompany("test");
@@ -39,7 +37,7 @@ public class ListableResponseTest {
         pOne.setpSeatNo(1);
         pOne.setpFloor(GROUNDFLOOR);
         Person pTwo = new Person();
-        pTwo.setPClockCardNo("2");
+        pTwo.setPClockCardNo("7");
         pTwo.setpName("test");
         pTwo.setpSurname("test");
         pTwo.setpCompany("test");
@@ -51,9 +49,9 @@ public class ListableResponseTest {
         created.items(Arrays.asList(pOne, pTwo));
 
         final ListableResponse read = objectMapper.readValue(
-                new InputStreamReader(getClass().getResourceAsStream("/dummyjson/personListResponse.json")), new TypeReference<ListableResponse<Person>>() {});
+                new InputStreamReader(getClass().getResourceAsStream("/dummyjson/personListResponse.json")), new TypeReference<ListableResponse<Person>>() {
+                });
 
-        //assertThat(objectMapper.writeValueAsString(created)).isEqualTo(objectMapper.writeValueAsString(read));
-        //assertEquals(objectMapper.writeValueAsString(created),objectMapper.writeValueAsString(read));
+        assertThat(created).isEqualTo(read);
     }
 }

@@ -1,0 +1,10 @@
+[
+  {
+    "code": 404,
+    "message": "Resource was not found"
+  },
+  {
+    "code": 500,
+    "message": "Internal server error"
+  }
+]

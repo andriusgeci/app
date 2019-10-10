@@ -9,4 +9,5 @@ public class AppConstants {
     public static final String TIME_ELAPSED_MS = "time elapsed ms";
     public static final String LOG_CURLY_BRACES = "{} {}";
     public static final String ERR_MSG_LIST = "Error listing Person objects";
+    public static final String ENTITY_NOT_FOUND_MSG = "Entity not found with requested value";
 }

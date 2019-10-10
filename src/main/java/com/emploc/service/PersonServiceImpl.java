@@ -16,7 +16,7 @@ import javax.validation.Validator;
 import java.util.List;
 import java.util.Optional;
 
-import static com.emploc.utils.AppConstants.NOT_FOUND_MSG;
+import static com.emploc.utils.AppConstants.*;
 
 @Service
 public class PersonServiceImpl implements PersonService {
@@ -77,7 +77,7 @@ public class PersonServiceImpl implements PersonService {
                 .find(Query.query(Criteria.where(personFilter.getKey())
                         .regex(personFilter.getValue(), "i")), Person.class);
         if (personList.isEmpty()) {
-            throw new EntityNotFoundException(String.format("%s : %s", NOT_FOUND_MSG, personFilter.getValue()));
+            throw new EntityNotFoundException(String.format("%s  : '%s' please check your request", ENTITY_NOT_FOUND_MSG, personFilter.getValue()));
         }
         result.setItems(personList);
         return result;
