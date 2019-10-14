@@ -98,7 +98,8 @@ public class PersonRestServiceImpl implements PersonRestService {
         log.info("start: deletePerson with clockCardId {} ", pClockCardNo);
         try {
             RsCheck.badRequest(StringUtils.isNoneBlank(pClockCardNo), WRONG_ID_LABEL);
-            return Response.ok(personService.deletePerson(pClockCardNo)).build();
+            final Person deleted = personService.getPersonById(pClockCardNo);
+            return Response.ok(personService.deletePersonById(deleted.getPClockCardNo())).build();
         } catch (final ValidationException | EntityNotFoundException | BadRequestException e) {
             throw e;
         } catch (final Exception e) {

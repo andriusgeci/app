@@ -12,7 +12,7 @@ public interface PersonService {
 
     Person saveOld(Person person);
 
-    Person deletePerson(String pClockCardNo);
+    Person deletePersonById(String pClockCardNo);
 
     ListableResponse<Person> findPerson(PersonFilter personFilter) throws NoSuchFieldException;
 }

@@ -62,7 +62,7 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public Person deletePerson(@NotNull final String pClockCardNo) {
+    public Person deletePersonById(@NotNull final String pClockCardNo) {
         final Optional<Person> delete = personRepository.findById(pClockCardNo);
         if (delete.isEmpty()) {
             throw new EntityNotFoundException(String.format("%s : %s", NOT_FOUND_MSG, pClockCardNo));
