@@ -44,27 +44,29 @@ public class PersonRestServiceImplTest {
         person.setpDepartment("test");
         person.setpCompany("test");
 
-        when(personService.getPersonById(pClockCardNo)).thenReturn(person);
-
         when(personService.savePerson(any(Person.class))).thenAnswer((Answer<Person>) invocation -> {
             final Person obj = invocation.getArgument(0);
             return obj;
         });
 
-       // when(personService.saveOld())
+        when(personService.saveOld(any(Person.class))).thenAnswer((Answer<Person>) invocation -> {
+            final Person obj = invocation.getArgument(0);
+            return obj;
+        });
 
         personRestService = new PersonRestServiceImpl(personService, validator);
     }
 
     @Test
     public void personGetTest() {
+        when(personService.getPersonById(pClockCardNo)).thenReturn(person);
         final Response response = personRestService.getPerson(pClockCardNo);
 
         assertThat(response.getStatus()).isEqualTo(Response.ok().build().getStatus());
         assertThat(response.getEntity()).isNotNull();
-        final Person entity = (Person) response.getEntity();
-        assertThat(entity).isNotNull();
-        assertThat(entity.getPClockCardNo()).isNotNull();
+        final Person person = (Person) response.getEntity();
+        assertThat(person).isNotNull();
+        assertThat(person.getPClockCardNo()).isNotNull();
     }
 
     @Test
@@ -72,12 +74,28 @@ public class PersonRestServiceImplTest {
         final Response response = personRestService.createPerson(person);
         assertThat(response.getStatus()).isEqualTo(Response.ok().build().getStatus());
         assertThat(response.getEntity()).isEqualTo(person);
+
+        final Person person = (Person) response.getEntity();
+        assertThat(person).isNotNull();
+        assertThat(person.getPClockCardNo()).isNotNull();
     }
 
     @Test
     public void personUpdateTest() {
         final Response response = personRestService.updatePerson(pClockCardNo, person);
+        assertThat(response.getStatus()).isEqualTo(Response.ok().build().getStatus());
+        assertThat(response.getEntity()).isNotNull();
+
+        final Person person = (Person) response.getEntity();
+        assertThat(person).isNotNull();
+        assertThat(person.getPClockCardNo()).isNotNull();
+    }
+
+    @Test
+    public void personDeleteTest() {
+        when(personService.getPersonById(pClockCardNo)).thenReturn(person);
+        final Response response = personRestService.deletePerson(pClockCardNo);
+        assertThat(response.getStatus()).isEqualTo(Response.ok().build().getStatus());
+        assertThat(response.getEntity()).isNotNull();
     }
 }
-
-
