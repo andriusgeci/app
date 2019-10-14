@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
 import javax.validation.Validator;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,7 +35,7 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public Person getPersonById(String pClockCardNo) {
+    public Person getPersonById(@NotNull final String pClockCardNo) {
         Optional<Person> opt = personRepository.findById(pClockCardNo);
         if (opt.isEmpty()) {
             throw new EntityNotFoundException(String.format("%s : %s", NOT_FOUND_MSG, pClockCardNo));
@@ -43,7 +44,7 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public Person savePerson(Person person) {
+    public Person savePerson(@NotNull final Person person) {
         personRepository.save(person);
         return person;
     }
@@ -61,7 +62,7 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public Person deletePerson(String pClockCardNo) {
+    public Person deletePerson(@NotNull final String pClockCardNo) {
         final Optional<Person> delete = personRepository.findById(pClockCardNo);
         if (delete.isEmpty()) {
             throw new EntityNotFoundException(String.format("%s : %s", NOT_FOUND_MSG, pClockCardNo));
@@ -71,7 +72,7 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public ListableResponse<Person> findPerson(PersonFilter personFilter) {
+    public ListableResponse<Person> findPerson(@NotNull final PersonFilter personFilter) {
         final ListableResponse<Person> result = new ListableResponse<>();
         final List<Person> personList = mongoTemplate
                 .find(Query.query(Criteria.where(personFilter.getKey())

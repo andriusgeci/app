@@ -1,6 +1,7 @@
 package com.emp.loc.model;
 
 import com.emploc.model.Person;
+import com.emploc.model.PersonFilter;
 import com.openpojo.validation.Validator;
 import com.openpojo.validation.ValidatorBuilder;
 import com.openpojo.validation.test.impl.GetterTester;
@@ -21,5 +22,6 @@ public class ModelTest {
     @Test
     public void setterAndGetterTest(){
         validateAccessors(Person.class.getPackage().getName());
+        validateAccessors(PersonFilter.class.getPackage().getName());
     }
 }
