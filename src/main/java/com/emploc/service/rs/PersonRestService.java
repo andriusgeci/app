@@ -75,7 +75,7 @@ public interface PersonRestService {
             @ApiResponse(code = 400, message = ERR_MSG_LIST, response = PersonList.class),
             @ApiResponse(code = 404, message = NOT_FOUND_MSG, response = CodeMessage.class, responseContainer = "List"),
     })
-    Response listPersonsByName(
+    Response findPersonByField(
             @ApiParam(value = "Person's filter", required = true) @NotNull PersonFilter personFilter
     );
 }

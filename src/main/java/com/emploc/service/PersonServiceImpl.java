@@ -17,7 +17,8 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.Optional;
 
-import static com.emploc.utils.AppConstants.*;
+import static com.emploc.utils.AppConstants.ENTITY_NOT_FOUND_MSG;
+import static com.emploc.utils.AppConstants.NOT_FOUND_MSG;
 
 @Service
 public class PersonServiceImpl implements PersonService {

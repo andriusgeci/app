@@ -1,6 +1,8 @@
 package com.emp.loc.service.rs;
 
+import com.emploc.model.ListableResponse;
 import com.emploc.model.Person;
+import com.emploc.model.PersonFilter;
 import com.emploc.model.person.Personroot;
 import com.emploc.service.PersonService;
 import com.emploc.service.rs.PersonRestService;
@@ -30,6 +32,8 @@ public class PersonRestServiceImplTest {
     private PersonRestService personRestService;
     @Mock
     private Validator validator = mock(Validator.class);
+    private PersonFilter personfilter;
+    private ListableResponse<Person> personListableResponse;
 
 
     @Before
@@ -47,12 +51,15 @@ public class PersonRestServiceImplTest {
         person.setpDepartment("test");
         person.setpCompany("test");
 
-        Mockito.when(personService.savePerson(any(Person.class))).thenAnswer((Answer<Person>) invocation -> {
-            final Person obj = invocation.getArgument(0);
-            return obj;
-        });
+        personfilter = new PersonFilter();
+
+        personListableResponse = new ListableResponse<>();
+
+        Mockito.when(personService.savePerson(any(Person.class))).thenAnswer((Answer<Person>) invocation -> invocation.getArgument(0));
 
         Mockito.when(personService.saveOld(any(Person.class))).thenAnswer((Answer<Person>) invocation -> invocation.getArgument(0));
+
+        Mockito.when(personService.findPerson(personfilter)).thenReturn(personListableResponse);
 
         personRestService = new PersonRestServiceImpl(personService, validator);
     }
@@ -96,6 +103,17 @@ public class PersonRestServiceImplTest {
         Mockito.when(personService.getPersonById(pClockCardNo)).thenReturn(person);
         Mockito.when(personService.deletePersonById(pClockCardNo)).thenReturn(person);
         final Response response = personRestService.deletePerson(pClockCardNo);
+        assertThat(response.getStatus()).isEqualTo(Response.ok().build().getStatus());
+        assertThat(response.getEntity()).isNotNull();
+    }
+
+    @Test
+    public void findPersonByNameTest() {
+        personfilter.setKey("pName");
+        personfilter.setValue("test");
+        personListableResponse.addItem(person);
+
+        final Response response = personRestService.findPersonByField(personfilter);
         assertThat(response.getStatus()).isEqualTo(Response.ok().build().getStatus());
         assertThat(response.getEntity()).isNotNull();
     }

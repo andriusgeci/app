@@ -14,5 +14,5 @@ public interface PersonService {
 
     Person deletePersonById(String pClockCardNo);
 
-    ListableResponse<Person> findPerson(PersonFilter personFilter) throws NoSuchFieldException;
+    ListableResponse<Person> findPerson(PersonFilter personFilter);
 }

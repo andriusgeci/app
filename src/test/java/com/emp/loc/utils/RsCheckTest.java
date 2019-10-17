@@ -11,7 +11,7 @@ import javax.ws.rs.BadRequestException;
 
 public class RsCheckTest {
 
-    Validator validator;
+    private Validator validator;
 
     @Before
     public void setup() {
